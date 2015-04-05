@@ -17,6 +17,7 @@ GoodShows is a clone of Goodreads, but for TV shows. It is built on Backbone and
 - [ ] Add friends
 - [ ] Rate and review TV shows
 - [ ] Comment on reviews
+- [ ] View a feed of activity from friends and of each friend specifically
 - [ ] Update progress on TV show currently being watched
 
 ## Design Docs
@@ -56,13 +57,19 @@ Reviews will be able to be commented on by friends.
 
 [Details][phase-four]
 
-### Phase 5: User activity feed and home feed (~2 days)
+### Phase 5: User activity feed, home feed (~2 days)
 I will add a feed to a user's profile page, indicating activity on the site (e.g. adding a show to a shelf, becoming friends with someone, rating a show). I will also add a feed from that user's friends as the home page item with infinite scrolling. I will use the Wisper gem to architect a Pub Sub design pattern for changes in the database.
 
 [Details][phase-five]
 
+### Phase 6: Update progress on currently watching TV Show (~1 day)
+I will add form to a user's page where they can indicate a show they are currently watching and update the percentage watched.
+
+[Details][phase-six]
+
 ### Bonus Features (TBD)
 - [ ] Expanded TV show page, with extensive information on seasons, episodes and actors
+- [ ] Progress update is checklist, user checks off which episodes they've seen to figure out percetnage
 - [ ] Search TV shows by genre, actor, etc.
 - [ ] Typeahead search bar
 
@@ -71,4 +78,5 @@ I will add a feed to a user's profile page, indicating activity on the site (e.g
 [phase-three]: ./docs/phases/phase3.md
 [phase-four]: ./docs/phases/phase4.md
 [phase-five]: ./docs/phases/phase5.md
+[phase-six]: ./docs/phases/phase6.md
 

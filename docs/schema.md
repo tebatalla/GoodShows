@@ -24,6 +24,8 @@ column name | data type | details
 id          | integer   | not null, primary key
 shelf_id    | integer   | not null, foreign key (references show_shelves)
 show_id     | integer   | not null, foreign key (references shows)
+watching    | boolean   | not null
+progress    | integer   |
 
 ## friend_requests
 column name | data type | details
