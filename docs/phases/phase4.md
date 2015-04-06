@@ -26,7 +26,9 @@
 ### Views
 * ReviewsIndex
 * ReviewsIndexItem
+* ReviewsForm
 * ReviewsShow (composite view, holds commentsshow)
+* CommentsForm
 * CommentsShow
 
 ## Gems/Libraries

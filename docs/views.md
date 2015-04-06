@@ -12,11 +12,14 @@
 ## ShowSearchResults
 ![show-search-results]
 
-## Friend Index
-![friend-index]
+## Show Show
+![show-show]
 
 ## Review Show
 ![review-show]
+
+## Review Form
+![review-form]
 
 ## Home Feed
 ![home-feed]
@@ -25,6 +28,7 @@
 [user-show]: ./wireframes/user_show.png
 [show-shelf-show]: ./wireframes/show_shelf_show.png
 [show-search-results]: ./wireframes/show_search_results.png
-[friend-index]: ./wireframes/friend_index.png
+[show-show]: ./wireframes/show_show.png
 [review-show]: ./wireframes/review_show.png
+[review-form]: ./wireframes/review_form.png
 [home-feed]: ./wireframes/home_feed.png
