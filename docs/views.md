@@ -9,8 +9,8 @@
 ## ShowShelf Show
 ![show-shelf-show]
 
-## ShowShelf Index
-![show-shelf-index]
+## ShowShelf Show
+![show-shelf-show]
 
 ## ShowSearchRestuls
 ![show-search-results]
@@ -30,7 +30,7 @@
 [new-session]: ./wireframes/new_session.png
 [user-show]: ./wireframes/user_show.png
 [show-shelf-show]: ./wireframes/show_shelf_show.png
-[show-shelf-index]: ./wireframes/show_shelf_index.png
+[show-shelf-show]: ./wireframes/show_shelf_show.png
 [show-search-results]: ./wireframes/show_search_results.png
 [friend-index]: ./wireframes/friend_index.png
 [review-show]: ./wireframes/review_show.png

@@ -26,7 +26,6 @@
 * Users
 
 ### Views
-* ShowShelfIndex
 * ShowShelfShow
 * ShowShelfForm
 * ShowShelfIndexItem
