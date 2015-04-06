@@ -69,7 +69,7 @@ I will add form to a user's page where they can indicate a show they are current
 
 ### Bonus Features (TBD)
 - [ ] Expanded TV show page, with extensive information on seasons, episodes and actors
-- [ ] Progress update is checklist, user checks off which episodes they've seen to figure out percetnage
+- [ ] Progress update is checklist, user checks off which episodes they've seen to figure out percentage
 - [ ] Search TV shows by genre, actor, etc.
 - [ ] Typeahead search bar
 
