@@ -31,6 +31,7 @@ gem 'rest-client'
 gem 'font-awesome-rails'
 gem 'jquery-ui-rails'
 gem 'ejs'
+gem 'newrelic_rpm'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
