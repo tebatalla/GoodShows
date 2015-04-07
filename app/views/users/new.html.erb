@@ -1,0 +1,10 @@
+<div class="row">
+  <div class="col-xs-offset-4 col-xs-4">
+    <h1>New User</h1>
+    
+    <%= render 'form', user: @user, new_user: true %>
+
+    <%= link_to 'Already a user? Sign In!', new_session_url  %>
+    
+  </div>
+</div>
