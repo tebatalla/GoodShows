@@ -1,0 +1,8 @@
+{
+  "globals": [
+    "GoodShows",
+    "Backbone",
+    "_",
+    "JST"
+  ]
+}
