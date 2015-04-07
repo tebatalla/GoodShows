@@ -1,3 +1,8 @@
+<% text = current_user ? "Logout" : "Login" %>
+<% url = current_user ? session_url : new_session_url %>
+<% action = current_user ? :delete : :get %>
+
+
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container">
     <div class="navbar-header">
@@ -23,6 +28,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#user">User</a></li>
         <li><a href="#">Friends</a></li>
+        <li><%= link_to text, url, method: action %></li>
       </ul>
     </div>
   </div>
