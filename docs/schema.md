@@ -34,7 +34,7 @@ id          | integer   | not null, primary key
 proposer_id | integer   | not null, foreign key (references users)
 target_id   | integer   | not null, foreign key (references users)
 
-## friends
+## friendships
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
@@ -57,6 +57,7 @@ id              | integer   | not null, primary key
 author_id       | integer   | not null, foreign key (references users)
 commentable_id  | integer   | not null
 commentable_type| string    | not null
+body            | text      | not null
 
 ## users
 column name     | data type | details
