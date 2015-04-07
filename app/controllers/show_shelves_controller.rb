@@ -5,8 +5,6 @@ class ShowShelvesController < ApplicationController
     else
       @shelves = current_user.show_shelves
     end
-    respond_to do |format|
-      format.json
-    end
+    render json: @shelves
   end
 end

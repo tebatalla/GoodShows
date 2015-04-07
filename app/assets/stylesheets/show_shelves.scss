@@ -1,3 +1,18 @@
 // Place all the styles related to the show_shelves controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+$border: 1px solid #EBE8D5;
+
+.shelf-header {
+  border-bottom: $border;
+}
+
+.shelf-sidebar{
+  border-right: $border;
+  margin-top: 10px;
+}
+
+.shelf-sidebar-item {
+  margin: 5px 0;
+}

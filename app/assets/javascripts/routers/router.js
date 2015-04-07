@@ -5,6 +5,7 @@ GoodShows.Routers.Router = Backbone.Router.extend({
 
   routes: {
     '': 'home',
+    'show-shelves': 'showMyShelves',
     'user/:id': 'profile',
     'user/:id/show-shelves': 'showShelves'
   },
@@ -23,13 +24,26 @@ GoodShows.Routers.Router = Backbone.Router.extend({
 
   },
 
-  showShelves: function(id) {
-    this.showShelves = new GoodShows.Collections.ShowShelves({
-      userId: id
-    });
+  showMyShelves: function () {
+    this.showShelves = new GoodShows.Collections.ShowShelves();
     this.showShelves.fetch();
     var view = new GoodShows.Views.ShowShelvesIndex({
       collection: this.showShelves
+    });
+
+    this._swapView(view);
+  },
+
+  showShelves: function(id) {
+    this.showShelves = new GoodShows.Collections.ShowShelves({});
+    this.showShelves.fetch({
+      data: {
+        user_id: id
+      }
+    });
+    var view = new GoodShows.Views.ShowShelvesIndex({
+      collection: this.showShelves,
+      userId: id
     });
 
     this._swapView(view);
