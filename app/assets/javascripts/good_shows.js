@@ -4,7 +4,6 @@ window.GoodShows = {
   Views: {},
   Routers: {},
   initialize: function() {
-    alert('Hello from Backbone!');
   }
 };
 
