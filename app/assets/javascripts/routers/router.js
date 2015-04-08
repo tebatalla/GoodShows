@@ -8,7 +8,8 @@ GoodShows.Routers.Router = Backbone.Router.extend({
     'show-shelves': 'showMyShelves',
     'users/:id': 'profile',
     'users/:id/show-shelves': 'showShelves',
-    'users/:id/show-shelves/:shelfId': 'showShelf'
+    'users/:id/show-shelves/:shelfId': 'showShelf',
+    'show-search?*queryString': 'showSearch'
   },
 
   home: function () {
@@ -23,6 +24,18 @@ GoodShows.Routers.Router = Backbone.Router.extend({
 
   profile: function (id) {
 
+  },
+
+  showSearch: function(queryString) {
+    this.showResults = new GoodShows.Collections.ShowSearchResults();
+    this.showResults.fetch({
+      data: queryString
+    });
+    var view = new GoodShows.Views.ShowSearchResultIndex({
+      collection: this.showResults
+    });
+
+    this._swapView(view);
   },
 
   showShelf: function(id, shelfId){
