@@ -41,11 +41,11 @@ GoodShows.Views.ShowShelvesIndex = Backbone.CompositeView.extend({
   },
 
   displayTextInButton: function (event) {
-
+    //TODO
   },
 
   removeTextInButton: function (event) {
-
+    //TODO
   },
 
   addShelf: function (event) {
