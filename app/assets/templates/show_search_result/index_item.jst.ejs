@@ -1,6 +1,8 @@
 <td class="poster-col">
   <% if (show.get('poster_path')) { %>
-  <img src="https://image.tmdb.org/t/p/w92<%= show.get('poster_path') %>" alt="">
+  <a href="#shows/<%= show.id %>">
+    <img src="https://image.tmdb.org/t/p/w92<%= show.get('poster_path') %>" alt="">
+  </a>
   <% } %>
 </td>
 <td><%= show.escape('original_name') %></td>

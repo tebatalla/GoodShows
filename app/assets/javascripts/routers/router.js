@@ -6,6 +6,7 @@ GoodShows.Routers.Router = Backbone.Router.extend({
   routes: {
     '': 'home',
     'show-shelves': 'showMyShelves',
+    'shows/:id': 'showShow',
     'users/:id': 'profile',
     'users/:id/show-shelves': 'showShelves',
     'users/:id/show-shelves/:shelfId': 'showShelf',
@@ -79,6 +80,18 @@ GoodShows.Routers.Router = Backbone.Router.extend({
       collection: this.shelves,
       model: this._shelfModel(),
       userId: id
+    });
+
+    this._swapView(view);
+  },
+
+  showShow: function(id) {
+    this.show = new GoodShows.Models.Show({
+      id: id
+    });
+    this.show.fetch();
+    var view = new GoodShows.Views.ShowShow({
+      model: this.show
     });
 
     this._swapView(view);

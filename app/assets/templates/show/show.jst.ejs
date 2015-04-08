@@ -1,0 +1,67 @@
+<div class="col-sm-3 col-sm-offset-1">
+  <div class="show-poster">
+    <img src="https://image.tmdb.org/t/p/w185<%= show.escape('poster_path') %>" alt="">
+  </div>
+  <div class="add-to-shelf">
+    
+  </div>
+</div>
+<div class="col-sm-7">
+  <div class="show-main row">
+    <h1><%= show.escape('name') %></h1>
+    <p>Created by: <%= show.escape('created_by') %></p>
+    <p class="lead"><%= show.escape('overview') %></p>
+  </div>
+  <div class="show-details row">
+    <div class="show-detail row">
+      <div class="detail-header col-xs-4">
+        Number of Seasons
+      </div>
+      <div class="detail-body col-xs-8">
+        <%= show.escape('number_of_seasons')  %>
+      </div>
+    </div>
+    <div class="show-detail row">
+      <div class="detail-header col-xs-4">
+        Number of Episodes
+      </div>
+      <div class="detail-body col-xs-8">
+        <%= show.escape('number_of_episodes')  %>
+      </div>
+    </div>
+    <div class="show-detail row">
+      <div class="detail-header col-xs-4">
+        Networks
+      </div>
+      <div class="detail-body col-xs-8">
+        <%= show.escape('networks')  %>
+      </div>
+    </div>
+    <div class="show-detail row">
+      <div class="detail-header col-xs-4">
+        Genres
+      </div>
+      <div class="detail-body col-xs-8">
+        <%= show.escape('genres') %>
+      </div>
+    </div>
+    <div class="show-detail row">
+      <div class="detail-header col-xs-4">
+        Episode Run Time
+      </div>
+      <div class="detail-body col-xs-8">
+        <%= show.escape('episode_run_time') %>
+      </div>
+    </div>
+    <div class="show-detail row">
+      <div class="detail-header col-xs-4">
+        Dates
+      </div>
+      <div class="detail-body col-xs-8">
+        <%= new Date(show.escape('first_air_date')).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) %> 
+        to <%= new Date(show.escape('last_air_date')).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) %>
+        <%= show.escape('in_production') ? "(In Production)" : "" %>
+      </div>
+    </div>
+  </div>
+</div>

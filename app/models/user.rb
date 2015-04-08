@@ -21,6 +21,8 @@ class User < ActiveRecord::Base
            foreign_key: :owner_id,
            dependent: :destroy
 
+  has_many :shows, through: :show_shelves, source: :shows
+
   attr_reader :password
 
   def password=(password)

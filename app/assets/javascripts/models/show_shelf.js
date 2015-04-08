@@ -7,19 +7,19 @@ GoodShows.Models.ShowShelf = Backbone.Model.extend({
     }
   },
 
-  // shows: function () {
-  //   if (!this._shows) {
-  //     this._shows = new GoodShows.Collections.Shows([], { shelf: this });
-  //   }
-  //   return this._shows;
-  // },
+  shows: function () {
+    if (!this._shows) {
+      this._shows = new GoodShows.Collections.Shows([], { shelf: this });
+    }
+    return this._shows;
+  },
 
-  // parse: function (response) {
-  //   if (response.shows) {
-  //     this.shows().set(response.shows, { parse: true });
-  //     delete response.shows;
-  //   }
+  parse: function (response) {
+    if (response.shows) {
+      this.shows().set(response.shows, { parse: true });
+      delete response.shows;
+    }
 
-  //   return response;
-  // }
+    return response;
+  }
 });
