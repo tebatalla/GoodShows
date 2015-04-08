@@ -32,7 +32,8 @@ GoodShows.Routers.Router = Backbone.Router.extend({
       data: queryString
     });
     var view = new GoodShows.Views.ShowSearchResultIndex({
-      collection: this.showResults
+      collection: this.showResults,
+      query: $.parseParams(queryString)
     });
 
     this._swapView(view);

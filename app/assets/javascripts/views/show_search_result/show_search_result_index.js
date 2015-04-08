@@ -2,7 +2,9 @@ GoodShows.Views.ShowSearchResultIndex = Backbone.CompositeView.extend({
   template: JST['show_search_result/index'],
 
   render: function () {
-    var content = this.template({});
+    var content = this.template({
+      query: this.query
+    });
   
     this.$el.html(content);
 
@@ -17,7 +19,10 @@ GoodShows.Views.ShowSearchResultIndex = Backbone.CompositeView.extend({
     return this;
   },
 
-  initialize: function () {
+  initialize: function (options) {
     this.listenTo(this.collection, "sync", this.render);
+    if (options.query) {
+      this.query = options.query;
+    }
   }
 });

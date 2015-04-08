@@ -1,8 +1,15 @@
 <div class="row search-result-header">
-  <h1>Search Results</h1>
+  <h1>Search Results for "<%= query.query %>"</h1>
 </div>
 <div class="row">
-  <div class="col-xs-12 search-results">
-    
-  </div>
+  <table class="table table-responsive search-results-table">
+    <thead>
+      <tr>
+        <th class="poster-col">Poster</th>
+        <th>Name</th>
+        <th>First Air Date</th>
+      </tr>
+    </thead>
+    <tbody class="search-results"></tbody>
+  </table>
 </div>

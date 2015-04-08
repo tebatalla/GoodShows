@@ -1,1 +1,11 @@
-<h4><%= show.escape('original_name') %></h4>
+<td class="poster-col">
+  <% if (show.get('poster_path')) { %>
+  <img src="https://image.tmdb.org/t/p/w92<%= show.get('poster_path') %>" alt="">
+  <% } %>
+</td>
+<td><%= show.escape('original_name') %></td>
+<td>
+<% if (show.escape('first_air_date')) { %>
+<%= new Date(show.escape('first_air_date')).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) %>
+<% } %>
+</td>

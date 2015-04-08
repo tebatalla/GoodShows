@@ -9,5 +9,7 @@ GoodShows.Views.ShowSearchResultIndexItem = Backbone.View.extend({
     this.$el.html(content);
   
     return this;
-  }
+  },
+
+  tagName: 'tr'
 });
