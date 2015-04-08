@@ -6,9 +6,9 @@ GoodShows.Routers.Router = Backbone.Router.extend({
   routes: {
     '': 'home',
     'show-shelves': 'showMyShelves',
-    'user/:id': 'profile',
-    'user/:id/show-shelves': 'showShelves',
-    'user/:id/show-shelves/:shelfId': 'showShelf'
+    'users/:id': 'profile',
+    'users/:id/show-shelves': 'showShelves',
+    'users/:id/show-shelves/:shelfId': 'showShelf'
   },
 
   home: function () {

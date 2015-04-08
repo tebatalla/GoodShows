@@ -12,8 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.serializejson.min
 //= require underscore
 //= require backbone
+//= require bootstrap-sprockets
 //= require good_shows
 //= require_tree ../templates
 //= require_tree ./utils

@@ -1,5 +1,12 @@
 GoodShows.Views.ShowShelvesIndex = Backbone.CompositeView.extend({
   template: JST['show_shelf/index'],
+
+  events: {
+    'mouseenter .add-shelf': 'displayTextInButton',
+    'mouseleave .add-shelf': 'removeTextInButton',
+    'submit .add-shelf-form': 'addShelf'
+  },
+
   render: function () {
     var content = this.template();
   
@@ -24,12 +31,33 @@ GoodShows.Views.ShowShelvesIndex = Backbone.CompositeView.extend({
     }.bind(this));
 
     var showShelfShowView = new GoodShows.Views.ShowShelfShow({
-      model: this.model
+      model: this.model,
+      collection: this.collection
     });
 
     this.addSubview('.shelf-show', showShelfShowView);
   
     return this;
+  },
+
+  displayTextInButton: function (event) {
+
+  },
+
+  removeTextInButton: function (event) {
+
+  },
+
+  addShelf: function (event) {
+    event.preventDefault();
+    var data = $(event.currentTarget).serializeJSON();
+    var newShelf = new GoodShows.Models.ShowShelf(data);
+    newShelf.save({}, {
+      success: function () {
+        this.collection.add(newShelf);
+        Backbone.history.navigate('users/' + newShelf.get('owner_id') + '/show-shelves/' + newShelf.id, { trigger: true });
+      }.bind(this)
+    });
   },
 
   initialize: function (options) {

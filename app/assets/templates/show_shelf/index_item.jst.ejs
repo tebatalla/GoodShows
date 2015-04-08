@@ -1,5 +1,5 @@
 <% if (shelf.get('title') === 'All') { %>
-<a href="#user/<%= shelf.escape('owner_id') %>/show-shelves">All</a>
+<a href="#users/<%= shelf.escape('owner_id') %>/show-shelves">All</a>
 <% } else { %>
-<a href="#user/<%= shelf.escape('owner_id') %>/show-shelves/<%= shelf.id %>"><%= shelf.escape("title") %></a>
+<a href="#users/<%= shelf.escape('owner_id') %>/show-shelves/<%= shelf.id %>"><%= shelf.escape("title") %></a>
 <% } %>

@@ -12,4 +12,19 @@ class ShowShelvesController < ApplicationController
     @shelf = ShowShelf.find(params[:id])
     render :show
   end
+
+  def create
+    @shelf = current_user.show_shelves.new(shelf_params)
+    if @shelf.save
+      render :show
+    else
+      render :show
+    end
+  end
+
+  private
+
+  def shelf_params
+    params.permit(:title)
+  end
 end

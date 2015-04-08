@@ -1,5 +1,11 @@
 <div class="row shelf-header">
-  <h1>My Shows</h1>
+  <h1>My Shows
+    <small>
+      <button class="btn btn-primary btn-xs add-shelf" data-toggle="modal" data-target="#add-shelf-modal">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+      </button>
+    </small>
+  </h1>
 </div>
 <div class="row">
   <div class="col-xs-2 shelf-sidebar">
@@ -7,5 +13,30 @@
   </div>
   <div class="col-xs-10 shelf-show">
     
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="add-shelf-modal" tabindex="-1" role="dialog" aria-labelledby="add-shelf-modal" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="add-shelf-modal-heading">Add Shelf</h4>
+      </div>
+      <div class="modal-body">
+        <form class="add-shelf-form">
+          <div class="form-group">
+            <label for="shelf-title-form">Title</label>
+            <input id="shelf-title-form" class="form-control" type="text" name="title">
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary add-shelf-submit">Create Shelf</button>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
   </div>
 </div>
