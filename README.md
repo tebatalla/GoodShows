@@ -8,8 +8,8 @@
 GoodShows is a clone of Goodreads, but for TV shows. It is built on Backbone and Ruby on Rails. Users can:
 
 
-- [ ] Create accounts
-- [ ] Create sessions (log in)
+- [x] Create accounts
+- [x] Create sessions (log in)
 - [ ] Create TV Show shelves
 - [ ] Add TV Shows to shelves
 - [ ] Search for TV Shows by title
