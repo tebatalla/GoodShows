@@ -37,7 +37,8 @@ GoodShows.Collections.ShowShelves = Backbone.Collection.extend({
   allShowsShelf: function () {
     if(!this._allShowsShelf) {
       this._allShowsShelf = new GoodShows.Models.ShowShelf({
-        title: 'All'
+        title: 'All',
+        id: 0
       });
     }
 

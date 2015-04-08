@@ -1,1 +1,7 @@
-<h4><%= shelf.escape("title") %></h4>
+<h4><%= shelf.escape("title") %>
+  <% if (shelf.id !== 0) { %>
+  <small class="pull-right">
+    <button class="delete-shelf btn btn-danger btn-xs">Remove Shelf</button>
+  </small>
+  <% } %>
+</h4>

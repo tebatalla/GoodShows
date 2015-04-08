@@ -16,5 +16,20 @@ GoodShows.Views.ShowShelfShow = Backbone.CompositeView.extend({
 
   initialize: function () {
     this.listenTo(this.model, 'sync', this.render);
+  },
+
+  events: {
+    'click .delete-shelf': 'deleteShelf'
+  },
+
+  deleteShelf: function (event) {
+    event.preventDefault();
+    if (this.model.id !== 0) {
+      this.model.destroy({
+        success: function () {
+          Backbone.history.navigate('show-shelves', { trigger: true });
+        }
+      });
+    } 
   }
 });

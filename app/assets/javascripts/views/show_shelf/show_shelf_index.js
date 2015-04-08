@@ -17,7 +17,8 @@ GoodShows.Views.ShowShelvesIndex = Backbone.CompositeView.extend({
     var allItemIndex = new GoodShows.Views.ShowShelvesIndexItem({
       model: new GoodShows.Models.ShowShelf({
         title: 'All',
-        owner_id: ownerId
+        owner_id: ownerId,
+        id: 0
       })
     });
 
