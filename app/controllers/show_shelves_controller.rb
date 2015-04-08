@@ -9,15 +9,7 @@ class ShowShelvesController < ApplicationController
   end
 
   def show
-    if params[:id]
-      @shelf = ShowShelf.find(params[:id])
-      render :show
-    elsif params[:user_id]
-      @shelves = User.find(params[:user_id]).show_shelves
-      render :show_all, owner_id: params[:user_id]
-    else
-      @shelves = current_user.show_shelves
-      render :show_all, owner_id: current_user
-    end
+    @shelf = ShowShelf.find(params[:id])
+    render :show
   end
 end

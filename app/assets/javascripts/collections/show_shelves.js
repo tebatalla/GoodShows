@@ -20,5 +20,27 @@ GoodShows.Collections.ShowShelves = Backbone.Collection.extend({
     }
 
     return showShelf;
+  },
+
+  parse: function (response) {
+    var shows = [];
+    _.each(response, function (shelf) {
+      _.each(shelf.shows, function (show) {
+        shows.push(show);
+      });
+    });
+    this.allShowsShelf().set('shows', shows);
+
+    return response;
+  },
+
+  allShowsShelf: function () {
+    if(!this._allShowsShelf) {
+      this._allShowsShelf = new GoodShows.Models.ShowShelf({
+        title: 'All'
+      });
+    }
+
+    return this._allShowsShelf;
   }
 });

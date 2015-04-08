@@ -14,13 +14,7 @@ GoodShows.Views.ShowShelfShow = Backbone.CompositeView.extend({
     return this;
   },
 
-  initialize: function (options) {
-    if (options.userId) {
-      this.userId = options.userId;
-    }
-    if (options.all) {
-      this.all = options.all;
-    }
+  initialize: function () {
     this.listenTo(this.model, 'sync', this.render);
   }
 });

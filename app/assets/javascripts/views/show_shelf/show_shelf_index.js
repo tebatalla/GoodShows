@@ -5,11 +5,16 @@ GoodShows.Views.ShowShelvesIndex = Backbone.CompositeView.extend({
   
     this.$el.html(content);
 
-    // var allItemIndex = new GoodShows.Views.ShowShelvesIndexItem({
-    //   all: true
-    // });
+    var ownerId = this.collection.models[0] && this.collection.models[0].get('owner_id');
 
-    // this.addSubview('.shelf-sidebar', allItemIndex);
+    var allItemIndex = new GoodShows.Views.ShowShelvesIndexItem({
+      model: new GoodShows.Models.ShowShelf({
+        title: 'All',
+        owner_id: ownerId
+      })
+    });
+
+    this.addSubview('.shelf-sidebar', allItemIndex);
 
     this.collection.each( function (shelf) {
       var indexItemView = new GoodShows.Views.ShowShelvesIndexItem({
@@ -34,6 +39,6 @@ GoodShows.Views.ShowShelvesIndex = Backbone.CompositeView.extend({
     if(options.shelfId){
       this.shelfId = options.shelfId;
     }
-    this.listenTo(this.collection, "sync add", this.render);
+    this.listenTo(this.collection, "sync", this.render);
   }
 });
