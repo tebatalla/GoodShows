@@ -7,7 +7,8 @@ GoodShows.Routers.Router = Backbone.Router.extend({
     '': 'home',
     'show-shelves': 'showMyShelves',
     'user/:id': 'profile',
-    'user/:id/show-shelves': 'showShelves'
+    'user/:id/show-shelves': 'showShelves',
+    'user/:id/show-shelves/:shelfId': 'showShelf'
   },
 
   home: function () {
@@ -24,11 +25,29 @@ GoodShows.Routers.Router = Backbone.Router.extend({
 
   },
 
+  showShelf: function(id, shelfId){
+    this.showShelves = new GoodShows.Collections.ShowShelves({});
+    this.showShelves.fetch({
+      data: {
+        user_id: id
+      }
+    });
+
+    var view = new GoodShows.Views.ShowShelvesIndex({
+      collection: this.showShelves,
+      userId: id,
+      model: this._shelfModel(id, shelfId)
+    });
+
+    this._swapView(view);
+  },
+
   showMyShelves: function () {
     this.showShelves = new GoodShows.Collections.ShowShelves();
     this.showShelves.fetch();
     var view = new GoodShows.Views.ShowShelvesIndex({
-      collection: this.showShelves
+      collection: this.showShelves,
+      model: this._shelfModel()
     });
 
     this._swapView(view);
@@ -43,6 +62,7 @@ GoodShows.Routers.Router = Backbone.Router.extend({
     });
     var view = new GoodShows.Views.ShowShelvesIndex({
       collection: this.showShelves,
+      model: this._shelfModel(id),
       userId: id
     });
 
@@ -53,5 +73,24 @@ GoodShows.Routers.Router = Backbone.Router.extend({
     this._currentView && this._currentView.remove();
     this._currentView = view;
     this.$rootEl.html(view.render().$el);
+  },
+
+  _shelfModel: function(id, shelfId) {
+    var shelf;
+    if (shelfId) {
+      shelf = this.showShelves.getOrFetch(shelfId);
+    } else if (id) {
+      shelf = new GoodShows.Models.ShowShelf({});
+      shelf.fetch({
+        data: {
+          "user_id": id
+        }
+      });
+    } else {
+      shelf = new GoodShows.Models.ShowShelf({});
+      shelf.fetch();
+    }
+
+    return shelf;
   }
 });
