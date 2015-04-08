@@ -21,4 +21,34 @@
 #
 
 class Show < ActiveRecord::Base
+  validates :name, presence: true
+  has_many :show_shelvings, class_name: 'ShowShelving'
+  has_many :shelves, through: :show_shelvings, source: :shelf
+
+  def self.find_or_get_from_api(id)
+    show = Show.find_by_id(id)
+    return show if show
+
+    begin
+      response = RestClient.get "http://api.themoviedb.org/3/tv/#{id}",
+                                params: {'api_key' => '000110ac013031af0d42ddce25465b9f'}
+      attrs = JSON.parse(response).select do |attribute|
+        Show.column_names.include? attribute
+      end
+      attrs = attrs.map do |attribute, value|
+        if attribute == "created_by"
+          [attribute, value[0]["name"]]
+        elsif attribute == "episode_run_time"
+          [attribute, value.join(', ')]
+        elsif attribute == "genres" || attribute == "networks"
+          [attribute, value.map { |arr| arr["name"] }.join(', ')]
+        else
+          [attribute, value]
+        end
+      end.to_h
+      Show.create(attrs)
+    rescue
+      nil
+    end
+  end
 end

@@ -10,4 +10,8 @@
 #
 
 class ShowShelving < ActiveRecord::Base
+  validates :shelf_id, :show_id, presence: true
+  validates :show_id, uniqueness: { scope: :shelf_id }
+  belongs_to :shelf, foreign_key: :shelf_id, class_name: 'ShowShelf'
+  belongs_to :show
 end
