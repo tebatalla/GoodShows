@@ -53,10 +53,14 @@ GoodShows.Views.ShowShelvesIndex = Backbone.CompositeView.extend({
     event.preventDefault();
     var data = $(event.currentTarget).serializeJSON();
     var newShelf = new GoodShows.Models.ShowShelf(data);
+    // $('#add-shelf-modal').modal('hide');
     newShelf.save({}, {
       success: function () {
-        this.collection.add(newShelf);
-        Backbone.history.navigate('users/' + newShelf.get('owner_id') + '/show-shelves/' + newShelf.id, { trigger: true });
+        $('#add-shelf-modal').modal('hide');
+        $('#add-shelf-modal').on('hidden.bs.modal', function () {
+          this.collection.add(newShelf);
+          Backbone.history.navigate('users/' + newShelf.get('owner_id') + '/show-shelves/' + newShelf.id, { trigger: true });
+        }.bind(this));
       }.bind(this)
     });
   },
