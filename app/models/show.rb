@@ -46,11 +46,9 @@ class Show < ActiveRecord::Base
     attrs.map do |attribute, value|
       if value.nil? || (value.kind_of?(Array) && value.empty?)
         [attribute, nil]
-      elsif attribute == 'created_by'
-        [attribute, value[0]['name']]
       elsif attribute == 'episode_run_time'
         [attribute, value.join(', ')]
-      elsif attribute == 'genres' || attribute == 'networks'
+      elsif attribute == 'genres' || attribute == 'networks' || attribute == 'created_by'
         [attribute, value.map { |arr| arr['name'] }.join(', ')]
       else
         [attribute, value]
