@@ -1,12 +1,17 @@
-<button type="button" class="btn btn-success add-show-to-shelf">Want to watch</button>
-<% if(shelves.models && shelves.models.length > 0) { %>
+<% var wantToWatchId = _.find(shelves.models, function(shelf) {
+          return shelf.get('title') === 'Want to Watch'
+        }).id %>
+<button type="button" class="btn btn-success add-show-to-shelf"
+        data-id="<%= wantToWatchId %>" <%= hasShow(shelves.get(wantToWatchId), (show)) ? 'disabled="disable"' : "" %>>
+        Want to watch
+</button>
 <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
   <span class="caret"></span>
   <span class="sr-only">Toggle Dropdown</span>
 </button>
 <ul class="dropdown-menu" role="menu">
   <% shelves.each( function(shelf) { %>
-    <li>
+    <li<%= hasShow(shelf, show) ? ' class="disabled"' : '' %>>
       <a href="javascript:void(0);"
          class="add-show-to-shelf"
          data-id="<%= shelf.id %>">
@@ -15,4 +20,3 @@
     </li>
   <% }); %>
 </ul>
-<% } %>

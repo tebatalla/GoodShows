@@ -3,10 +3,14 @@ GoodShows.Views.ShowShelfButton = Backbone.View.extend({
 
   render: function () {
     var content = this.template({
-      shelves: this.collection
+      shelves: this.collection,
+      show: this.show,
+      hasShow: this.hasShow
     });
   
     this.$el.html(content);
+
+    this.delegateEvents();
   
     return this;
   },
@@ -14,9 +18,10 @@ GoodShows.Views.ShowShelfButton = Backbone.View.extend({
   className: 'btn-group',
 
   initialize: function (options) {
-    if (options.show) {
+    if (options) {
       this.show = options.show;
     }
+
     this.listenTo(this.collection, "sync", this.render);
   },
 
@@ -28,6 +33,13 @@ GoodShows.Views.ShowShelfButton = Backbone.View.extend({
     event.preventDefault();
     var shelfId = $(event.currentTarget).data('id');
     var shelfModel = this.collection.getOrFetch(shelfId);
-    shelfModel.addShow(this.show);
+    shelfModel.addShow(this.show, function() {
+      shelfModel.shows().add(this.show);
+      this.render();
+    }.bind(this));
+  },
+
+  hasShow: function(shelf, show) {
+    return _.contains(shelf.shows().pluck('id'), show.id);
   }
 });
