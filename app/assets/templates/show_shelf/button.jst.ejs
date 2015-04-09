@@ -1,0 +1,12 @@
+<button type="button" class="btn btn-success" data-id="<%= shelves.at(0) %>">Add to watch shelf</button>
+<% if(shelves.models && shelves.models.length > 1) { %>
+<button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+  <span class="caret"></span>
+  <span class="sr-only">Toggle Dropdown</span>
+</button>
+<ul class="dropdown-menu" role="menu">
+  <% shelves.each( function(shelf) { %>
+    <li><a href="javascript:void(0);"><%= shelf.escape('title') %></a></li>
+  <% }); %>
+</ul>
+<% } %>

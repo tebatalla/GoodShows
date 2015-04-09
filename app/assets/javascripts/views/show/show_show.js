@@ -7,13 +7,27 @@ GoodShows.Views.ShowShow = Backbone.View.extend({
     });
   
     this.$el.html(content);
+
+    this.shelvesButton = new GoodShows.Views.ShowShelfButton({
+      collection: this.shelves
+    });
+
+    this.$('.add-to-shelf').html(this.shelvesButton.render().$el);
   
     return this;
   },
 
-  initialize: function () {
+  initialize: function (options) {
+    if (options.shelves) {
+      this.shelves = options.shelves;
+    }
     this.listenTo(this.model, 'sync', this.render);
   },
 
-  className: 'row show-page'
+  className: 'row show-page',
+
+  remove: function () {
+    Backbone.View.prototype.remove.call(this);
+    this.shelvesButton && this.shelvesButton.remove();
+  }
 });

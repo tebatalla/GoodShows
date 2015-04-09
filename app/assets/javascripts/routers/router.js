@@ -89,9 +89,12 @@ GoodShows.Routers.Router = Backbone.Router.extend({
     this.show = new GoodShows.Models.Show({
       id: id
     });
+    this.shelves = new GoodShows.Collections.ShowShelves();
+    this.shelves.fetch();
     this.show.fetch();
     var view = new GoodShows.Views.ShowShow({
-      model: this.show
+      model: this.show,
+      shelves: this.shelves
     });
 
     this._swapView(view);
