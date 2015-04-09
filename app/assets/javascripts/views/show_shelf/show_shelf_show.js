@@ -4,21 +4,15 @@ GoodShows.Views.ShowShelfShow = Backbone.CompositeView.extend({
     var content = this.template({
       shelf: this.model
     });
-  
     this.$el.html(content);
-
-    this.model.shows().each( function (show) {
-      var showShelfShowItem = new GoodShows.Views.ShowShelfShowItem({
-        model: show
-      });
-      this.addSubview('.shelf-show-items', showShelfShowItem);
-    }.bind(this));
-  
+    this.attachSubviews();
     return this;
   },
 
   initialize: function () {
+    this.listenTo(this.model.shows(), 'add', this.addShowsToShelfShow);
     this.listenTo(this.model, 'sync', this.render);
+    this.model.shows().each(this.addShowsToShelfShow.bind(this));
   },
 
   events: {
@@ -34,5 +28,12 @@ GoodShows.Views.ShowShelfShow = Backbone.CompositeView.extend({
         }
       });
     } 
+  },
+
+  addShowsToShelfShow: function (show) {
+    var showShelfShowItem = new GoodShows.Views.ShowShelfShowItem({
+      model: show
+    });
+    this.addSubview('.shelf-show-items', showShelfShowItem);
   }
 });

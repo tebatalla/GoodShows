@@ -8,21 +8,25 @@ GoodShows.Views.ShowSearchResultIndex = Backbone.CompositeView.extend({
   
     this.$el.html(content);
 
-    this.collection.each( function (searchResult) {
-      var searchResultItemView = new GoodShows.Views.ShowSearchResultIndexItem({
-        model: searchResult,
-        collection: this.collection
-      });
-      this.addSubview('.search-results', searchResultItemView);
-    }.bind(this));
+    this.attachSubviews();    
   
     return this;
   },
 
   initialize: function (options) {
-    this.listenTo(this.collection, "sync", this.render);
     if (options.query) {
       this.query = options.query;
     }
+    this.listenTo(this.collection, "sync", this.render);
+    this.listenTo(this.collection, "add", this.addSearchResultItemView);
+    this.collection.each(this.addSearchResultItemView.bind(this));
+  },
+
+  addSearchResultItemView: function (searchResult) {
+    var searchResultItemView = new GoodShows.Views.ShowSearchResultIndexItem({
+      model: searchResult,
+      collection: this.collection
+    });
+    this.addSubview('.search-results', searchResultItemView);
   }
 });

@@ -11,33 +11,7 @@ GoodShows.Views.ShowShelvesIndex = Backbone.CompositeView.extend({
     var content = this.template();
   
     this.$el.html(content);
-
-    var ownerId = this.collection.models[0] && this.collection.models[0].get('owner_id');
-
-    var allItemIndex = new GoodShows.Views.ShowShelvesIndexItem({
-      model: new GoodShows.Models.ShowShelf({
-        title: 'All',
-        owner_id: ownerId,
-        id: 0
-      })
-    });
-
-    this.addSubview('.shelf-sidebar', allItemIndex);
-
-    this.collection.each( function (shelf) {
-      var indexItemView = new GoodShows.Views.ShowShelvesIndexItem({
-        model: shelf
-      });
-      this.addSubview('.shelf-sidebar', indexItemView);
-    }.bind(this));
-
-    var showShelfShowView = new GoodShows.Views.ShowShelfShow({
-      model: this.model,
-      collection: this.collection
-    });
-
-    this.addSubview('.shelf-show', showShelfShowView);
-  
+    this.attachSubviews();  
     return this;
   },
 
@@ -66,12 +40,50 @@ GoodShows.Views.ShowShelvesIndex = Backbone.CompositeView.extend({
   },
 
   initialize: function (options) {
-    if(options.userId) {
+    if(options) {
       this.userId = options.userId;
-    }
-    if(options.shelfId){
       this.shelfId = options.shelfId;
+      this.allShelf = options.allShelf;
     }
+
+    this.listenToOnce(this.collection, "sync", this.addAllShowShelvesIndexItem);
     this.listenTo(this.collection, "sync", this.render);
+    this.listenTo(this.collection, "add", this.addShowShelvesIndexItem);
+    this.listenTo(this.model, "sync", this.swapShowShelfView);
+    this.collection.each(this.addShowShelvesIndexItem.bind(this));
+
+    if(this.model.id === 0) {
+      this.swapShowShelfView();
+    }
+  },
+
+  addAllShowShelvesIndexItem: function () {
+
+    var ownerId = this.collection.models[0] && this.collection.models[0].get('owner_id');
+
+    var allItemIndex = new GoodShows.Views.ShowShelvesIndexItem({
+      model: this.allShelf.set({
+        owner_id: ownerId
+      })
+    });
+
+    this.unshiftSubview('.shelf-sidebar', allItemIndex);
+  },
+
+  addShowShelvesIndexItem: function (shelf) {
+    var indexItemView = new GoodShows.Views.ShowShelvesIndexItem({
+      model: shelf
+    });
+    this.addSubview('.shelf-sidebar', indexItemView);
+  },
+
+  swapShowShelfView: function () {
+    var showShelfShowView = new GoodShows.Views.ShowShelfShow({
+      model: this.model,
+      shows: this.model.shows()
+    });
+    this._currentShelf && this.removeSubview('.shelf-show',this._currentShelf);
+    this._currentShelf = showShelfShowView;
+    this.addSubview('.shelf-show', this._currentShelf);
   }
 });
