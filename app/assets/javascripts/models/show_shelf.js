@@ -21,5 +21,21 @@ GoodShows.Models.ShowShelf = Backbone.Model.extend({
     }
 
     return response;
-  }
+  },
+
+  addShow: function (showModel, callback) {
+
+    var data = {
+      shelf_id: this.id,
+      show_id: showModel.id
+    };
+
+    return $.ajax({
+        type: 'POST',
+        dataType: 'json',
+        url: 'show_shelvings',
+        data: data,
+        success: callback
+    });
+  },
 });

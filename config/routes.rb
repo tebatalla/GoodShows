@@ -3,5 +3,6 @@ Rails.application.routes.draw do
   resources :show_shelves, only: [:show, :index, :create, :destroy]
   resource :session, only: [:new, :create, :destroy]
   resources :shows, only: [:show, :index]
+  resources :show_shelvings, only: [:create, :destroy]
   root to: 'static_pages#index'
 end

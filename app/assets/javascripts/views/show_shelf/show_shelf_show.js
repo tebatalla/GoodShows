@@ -7,9 +7,12 @@ GoodShows.Views.ShowShelfShow = Backbone.CompositeView.extend({
   
     this.$el.html(content);
 
-    // this.model.shows().each( function (show) {
-
-    // })
+    this.model.shows().each( function (show) {
+      var showShelfShowItem = new GoodShows.Views.ShowShelfShowItem({
+        model: show
+      });
+      this.addSubview('.shelf-show-items', showShelfShowItem);
+    }.bind(this));
   
     return this;
   },
