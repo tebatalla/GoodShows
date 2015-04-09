@@ -11,6 +11,8 @@ class SessionsController < ApplicationController
       login!(@user)
       redirect_to :root
     else
+      @user = User.new(email: user_params[:email])
+      flash.now[:errors] = ["Invalid email and/or password"]
       render :new
     end
   end
