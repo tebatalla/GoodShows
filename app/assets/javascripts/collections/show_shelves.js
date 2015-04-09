@@ -29,7 +29,8 @@ GoodShows.Collections.ShowShelves = Backbone.Collection.extend({
         shows.push(show);
       });
     });
-    this.allShowsShelf().set('shows', shows);
+
+    this.allShowsShelf().shows().set(shows);
 
     return response;
   },
@@ -43,5 +44,9 @@ GoodShows.Collections.ShowShelves = Backbone.Collection.extend({
     }
 
     return this._allShowsShelf;
+  },
+
+  initialize: function(owner_id) {
+    this.owner_id = owner_id;
   }
 });

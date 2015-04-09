@@ -5,7 +5,7 @@ class ShowShelvesController < ApplicationController
     else
       @shelves = current_user.show_shelves
     end
-    render json: @shelves
+    render :index
   end
 
   def show

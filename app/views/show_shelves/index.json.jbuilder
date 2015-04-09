@@ -1,4 +1,4 @@
-json.show_shelves @shelves do |shelf|
+json.array! @shelves do |shelf|
   json.extract! shelf, :id, :title, :owner_id
   json.shows shelf.shows,
   :id,
