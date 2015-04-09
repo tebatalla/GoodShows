@@ -41,57 +41,69 @@ GoodShows.Routers.Router = Backbone.Router.extend({
   },
 
   showShelf: function(id, shelfId){
-    this.shelves = new GoodShows.Collections.ShowShelves();
-    this.shelves.fetch({
-      data: {
-        user_id: id
-      }
-    });
-    var view = new GoodShows.Views.ShowShelvesIndex({
-      collection: this.shelves,
-      userId: id,
-      allShelf: this.shelves.allShowsShelf(),
-      model: this._shelfModel(shelfId)
-    });
+    if(this._currentView && this._currentView.shelfView && this._currentView.userId === id) {
+      this._currentView.swapShowShelfView(this._shelfModel(shelfId));
+    } else {
+      this.shelves = this.shelves || new GoodShows.Collections.ShowShelves();
+      this.shelves.fetch({
+        data: {
+          user_id: id
+        }
+      });
+      var view = new GoodShows.Views.ShowShelvesIndex({
+        collection: this.shelves,
+        userId: id,
+        allShelf: this.shelves.allShowsShelf(),
+        model: this._shelfModel(shelfId)
+      });
 
-    this._swapView(view);
+      this._swapView(view);
+    }
   },
 
   showMyShelves: function () {
-    this.shelves = new GoodShows.Collections.ShowShelves();
-    this.shelves.fetch();
-    var view = new GoodShows.Views.ShowShelvesIndex({
-      collection: this.shelves,
-      model: this._shelfModel(),
-      allShelf: this.shelves.allShowsShelf(),
-      userId: this._shelfModel().get('owner_id')
-    });
+    if (this._currentView && this._currentView.shelfView) {
+      this._currentView.swapShowShelfView(this._shelfModel());
+    } else {
+      this.shelves = this.shelves || new GoodShows.Collections.ShowShelves();
+      this.shelves.fetch();
+      var view = new GoodShows.Views.ShowShelvesIndex({
+        collection: this.shelves,
+        model: this._shelfModel(),
+        allShelf: this.shelves.allShowsShelf(),
+        userId: this._shelfModel().get('owner_id')
+      });
 
-    this._swapView(view);
+      this._swapView(view);
+    }
   },
 
   showShelves: function(id) {
-    this.shelves = new GoodShows.Collections.ShowShelves({});
-    this.shelves.fetch({
-      data: {
-        user_id: id
-      }
-    });
-    var view = new GoodShows.Views.ShowShelvesIndex({
-      collection: this.shelves,
-      model: this._shelfModel(),
-      allShelf: this.shelves.allShowsShelf(),
-      userId: id
-    });
+    if (this._currentView && this._currentView.shelfView && this._currentView.userId === id) {
+      this._currentView.swapShowShelfView(this._shelfModel());
+    } else {
+      this.shelves = this.shelves || new GoodShows.Collections.ShowShelves({});
+      this.shelves.fetch({
+        data: {
+          user_id: id
+        }
+      });
+      var view = new GoodShows.Views.ShowShelvesIndex({
+        collection: this.shelves,
+        model: this._shelfModel(),
+        allShelf: this.shelves.allShowsShelf(),
+        userId: id
+      });
 
-    this._swapView(view);
+      this._swapView(view);
+    }
   },
 
   showShow: function(id) {
     this.show = new GoodShows.Models.Show({
       id: id
     });
-    this.shelves = new GoodShows.Collections.ShowShelves();
+    this.shelves = this.shelves || new GoodShows.Collections.ShowShelves();
     this.show.fetch();
     this.shelves.fetch();
     var view = new GoodShows.Views.ShowShow({

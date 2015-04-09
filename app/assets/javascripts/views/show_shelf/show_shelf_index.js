@@ -46,6 +46,8 @@ GoodShows.Views.ShowShelvesIndex = Backbone.CompositeView.extend({
       this.allShelf = options.allShelf;
     }
 
+    this.shelfView = true;
+
     this.listenToOnce(this.collection, "sync", this.addAllShowShelvesIndexItem);
     this.listenTo(this.collection, "sync", this.render);
     this.listenTo(this.collection, "add", this.addShowShelvesIndexItem);
@@ -77,10 +79,13 @@ GoodShows.Views.ShowShelvesIndex = Backbone.CompositeView.extend({
     this.addSubview('.shelf-sidebar', indexItemView);
   },
 
-  swapShowShelfView: function () {
+  swapShowShelfView: function (model) {
+    if (!model) {
+      model = this.model;
+    }
     var showShelfShowView = new GoodShows.Views.ShowShelfShow({
-      model: this.model,
-      shows: this.model.shows()
+      model: model,
+      shows: model.shows()
     });
     this._currentShelf && this.removeSubview('.shelf-show',this._currentShelf);
     this._currentShelf = showShelfShowView;
