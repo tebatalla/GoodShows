@@ -1,6 +1,6 @@
 <div class="col-sm-3 col-sm-offset-1">
   <div class="show-poster">
-    <img src="https://image.tmdb.org/t/p/w185<%= show.escape('poster_path') %>" alt="">
+    <img src="https://image.tmdb.org/t/p/w185<%= show.get('poster_path') %>" alt="">
   </div>
   <div class="add-to-shelf">
     
@@ -60,7 +60,7 @@
       <div class="detail-body col-xs-8">
         <%= new Date(show.escape('first_air_date')).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) %> 
         to <%= new Date(show.escape('last_air_date')).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) %>
-        <%= show.escape('in_production') ? "(In Production)" : "" %>
+        <%= show.get('in_production') ? "(In Production)" : "" %>
       </div>
     </div>
   </div>
