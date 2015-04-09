@@ -41,12 +41,16 @@ GoodShows.Routers.Router = Backbone.Router.extend({
   },
 
   showShelf: function(id, shelfId){
-    this.shelves = new GoodShows.Collections.ShowShelves({});
-    this.shelves.fetch({
-      data: {
-        user_id: id
-      }
-    });
+    if (!this.shelves || !this.shelves.ownerId) {
+      this.shelves = new GoodShows.Collections.ShowShelves({
+        owner_id: id
+      });
+      this.shelves.fetch({
+        data: {
+          user_id: id
+        }
+      });
+    }
 
     var view = new GoodShows.Views.ShowShelvesIndex({
       collection: this.shelves,
