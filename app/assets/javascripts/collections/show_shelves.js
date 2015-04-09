@@ -48,5 +48,7 @@ GoodShows.Collections.ShowShelves = Backbone.Collection.extend({
 
   initialize: function(owner_id) {
     this.owner_id = owner_id;
-  }
+  },
+
+  comparator: 'created_at'
 });

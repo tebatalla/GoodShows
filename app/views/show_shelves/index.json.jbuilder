@@ -1,5 +1,5 @@
 json.array! @shelves do |shelf|
-  json.extract! shelf, :id, :title, :owner_id
+  json.extract! shelf, :id, :title, :owner_id, :created_at, :updated_at
   json.shows shelf.shows,
   :id,
   :name,

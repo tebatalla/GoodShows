@@ -21,6 +21,8 @@ class ShowShelf < ActiveRecord::Base
   before_update :not_a_reserved_shelf
   before_destroy :not_a_reserved_shelf
 
+  default_scope { order("created_at") }
+
   def not_a_reserved_shelf
     ["Want to Watch", "Currently Watching", "Watched"].none? do |shelf|
       title == shelf
