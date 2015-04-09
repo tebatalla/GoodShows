@@ -18,4 +18,12 @@ class ShowShelf < ActiveRecord::Base
            class_name: 'ShowShelving',
            dependent: :destroy
   has_many :shows, through: :show_shelvings, source: :show
+  before_update :not_a_reserved_shelf
+  before_destroy :not_a_reserved_shelf
+
+  def not_a_reserved_shelf
+    ["Want to Watch", "Currently Watching", "Watched"].none? do |shelf|
+      title == shelf
+    end
+  end
 end

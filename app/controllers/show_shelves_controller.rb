@@ -24,7 +24,7 @@ class ShowShelvesController < ApplicationController
 
   def destroy
     @shelf = ShowShelf.find(params[:id])
-    @shelf.delete
+    @shelf.destroy
     render json: @shelf
   end
 

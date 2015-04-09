@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
   validates :email, uniqueness: true
   validates :password, length: { minimum: 6, allow_nil: true }
   before_validation :ensure_session_token
+  after_create :create_watch_shelf
 
   has_many :show_shelves,
            class_name: 'ShowShelf',
@@ -48,5 +49,11 @@ class User < ActiveRecord::Base
 
   def ensure_session_token
     self.session_token ||= SecureRandom.urlsafe_base64
+  end
+
+  def create_watch_shelf
+    show_shelves.create(title: 'Want to Watch')
+    show_shelves.create(title: 'Currently Watching')
+    show_shelves.create(title: 'Watched')
   end
 end
