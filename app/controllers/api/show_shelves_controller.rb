@@ -1,4 +1,4 @@
-class ShowShelvesController < ApplicationController
+class Api::ShowShelvesController < ApplicationController
   def index
     if params[:user_id]
       @shelves = User.find(params[:user_id]).show_shelves.includes(:shows, :show_shelvings)

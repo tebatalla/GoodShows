@@ -1,6 +1,6 @@
 GoodShows.Collections.ShowShelves = Backbone.Collection.extend({
   model: GoodShows.Models.ShowShelf,
-  url: '/show_shelves/',
+  url: '/api/show_shelves/',
 
   getOrFetch: function (id) {
     var showShelf = this.get(id);

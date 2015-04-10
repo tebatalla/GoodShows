@@ -1,4 +1,4 @@
-class ShowsController < ApplicationController
+class Api::ShowsController < ApplicationController
   def show
     @show = Show.find_or_get_from_api(params[:id])
     render :show

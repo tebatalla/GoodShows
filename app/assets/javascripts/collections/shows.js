@@ -1,4 +1,4 @@
 GoodShows.Collections.Shows = Backbone.Collection.extend({
   model: GoodShows.Models.Show,
-  url: '/shows'
+  url: '/api/shows'
 });

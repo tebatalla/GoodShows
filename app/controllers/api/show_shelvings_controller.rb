@@ -1,4 +1,4 @@
-class ShowShelvingsController < ApplicationController
+class Api::ShowShelvingsController < ApplicationController
   def create
     @show_shelving = ShowShelving.new(show_shelvings_params)
     if @show_shelving.save

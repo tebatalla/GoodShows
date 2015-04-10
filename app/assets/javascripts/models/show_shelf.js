@@ -1,5 +1,5 @@
 GoodShows.Models.ShowShelf = Backbone.Model.extend({
-  urlRoot: '/show_shelves/',
+  urlRoot: 'api/show_shelves/',
 
   initialize: function(options) {
     if(options.userId){
@@ -33,7 +33,7 @@ GoodShows.Models.ShowShelf = Backbone.Model.extend({
     return $.ajax({
         type: 'POST',
         dataType: 'json',
-        url: 'show_shelvings',
+        url: 'api/show_shelvings',
         data: data,
         success: callback
     });

@@ -1,21 +1,20 @@
 GoodShows.Models.Show = Backbone.Model.extend({
-  urlRoot: '/shows/',
+  urlRoot: '/api/shows/',
 
   removeFromShelf: function(options) {
     return $.ajax({
         type: 'DELETE',
         dataType: 'json',
-        url: 'show_shelvings/' + this.get('shelving_id'),
+        url: 'api/show_shelvings/' + this.get('shelving_id'),
         success: options.success
     });
   },
 
   removeFromAllShelves: function (options) {
-    debugger
     return $.ajax({
         type: 'DELETE',
         dataType: 'json',
-        url: 'remove_show_from_all_shelves',
+        url: 'api/remove_show_from_all_shelves',
         data: {
           "show_id": this.id
         },
