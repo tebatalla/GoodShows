@@ -14,6 +14,7 @@ class ShowShelving < ActiveRecord::Base
   validates :show_id, uniqueness: { scope: :shelf_id }
   belongs_to :shelf, foreign_key: :shelf_id, class_name: 'ShowShelf'
   belongs_to :show
+  has_one :user, through: :shelf, source: :user
 
   default_scope { order("created_at") }
 end

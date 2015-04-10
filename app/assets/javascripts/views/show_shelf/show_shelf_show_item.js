@@ -25,11 +25,20 @@ GoodShows.Views.ShowShelfShowItem = Backbone.View.extend({
   tagName: 'tr',
 
   events: {
-    'click .remove-show': 'removeShowFromShelf'
+    'click .remove-show': 'removeShowFromShelf',
+    'click .remove-from-all-shelves': 'removeShowFromEveryShelf'
   },
 
   removeShowFromShelf: function() {
     this.model.removeFromShelf({
+      success: function () {
+        this.collection.remove(this.model);
+      }.bind(this)
+    });
+  },
+
+  removeShowFromEveryShelf: function() {
+    this.model.removeFromAllShelves({
       success: function () {
         this.collection.remove(this.model);
       }.bind(this)

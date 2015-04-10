@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   resources :shows, only: [:show, :index]
   resources :show_shelvings, only: [:create, :destroy]
   root to: 'static_pages#index'
+  delete '/remove_show_from_all_shelves', to: 'show_shelvings#remove_show_from_all'
 end
