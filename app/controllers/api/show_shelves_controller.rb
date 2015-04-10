@@ -1,4 +1,6 @@
 class Api::ShowShelvesController < ApplicationController
+  before_action :ensure_logged_in
+
   def index
     if params[:user_id]
       @shelves = User.find(params[:user_id]).show_shelves.includes(:shows, :show_shelvings)

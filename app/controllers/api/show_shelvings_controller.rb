@@ -1,4 +1,6 @@
 class Api::ShowShelvingsController < ApplicationController
+  before_action :ensure_logged_in
+
   def create
     @show_shelving = ShowShelving.new(show_shelvings_params)
     if @show_shelving.save

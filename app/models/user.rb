@@ -24,6 +24,27 @@ class User < ActiveRecord::Base
 
   has_many :shows, through: :show_shelves, source: :shows
 
+  has_many :friendships,
+           class_name: 'Friendship',
+           foreign_key: :user_id,
+           dependent: :destroy
+
+  has_many :friends, through: :friendships, source: :friend_target
+
+  has_many :friend_proposals,
+           class_name: 'FriendRequest',
+           foreign_key: :requester_id,
+           dependent: :destroy
+
+  has_many :friend_requests,
+           class_name: 'FriendRequest',
+           foreign_key: :target_id,
+           dependent: :destroy
+
+  has_many :desired_friends, through: :friend_proposals, source: :requested
+
+  has_many :requesters, through: :friend_requests, source: :requester
+
   attr_reader :password
 
   def password=(password)

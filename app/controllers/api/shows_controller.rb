@@ -1,4 +1,6 @@
 class Api::ShowsController < ApplicationController
+  before_action :ensure_logged_in
+  
   def show
     @show = Show.find_or_get_from_api(params[:id])
     render :show

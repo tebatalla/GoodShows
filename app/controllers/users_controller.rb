@@ -1,17 +1,4 @@
 class UsersController < ApplicationController
-  before_action :ensure_logged_in, only: [:show]
-
-  # GET /users
-  # GET /users.json
-  def index
-    @users = User.all
-  end
-
-  # GET /users/1
-  # GET /users/1.json
-  def show
-    render :show
-  end
 
   # GET /users/new
   def new
