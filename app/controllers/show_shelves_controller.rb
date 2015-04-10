@@ -1,15 +1,15 @@
 class ShowShelvesController < ApplicationController
   def index
     if params[:user_id]
-      @shelves = User.find(params[:user_id]).show_shelves
+      @shelves = User.find(params[:user_id]).show_shelves.includes(:shows, :show_shelvings)
     else
-      @shelves = current_user.show_shelves
+      @shelves = current_user.show_shelves.includes(:shows, :show_shelvings)
     end
     render :index
   end
 
   def show
-    @shelf = ShowShelf.find(params[:id])
+    @shelf = ShowShelf.includes(:shows, :show_shelvings).find(params[:id])
     render :show
   end
 

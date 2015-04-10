@@ -11,9 +11,9 @@ GoodShows is a clone of Goodreads, but for TV shows. It is built on Backbone and
 - [x] Create accounts
 - [x] Create sessions (log in)
 - [x] Create TV Show shelves
-- [ ] Add TV Shows to shelves
-- [ ] Search for TV Shows by title
-- [ ] View TV Show Information
+- [x] Add TV Shows to shelves
+- [x] Search for TV Shows by title
+- [x] View TV Show Information
 - [ ] Add friends
 - [ ] Rate and review TV shows
 - [ ] Comment on reviews

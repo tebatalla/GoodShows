@@ -1,1 +1,14 @@
-<h3><a href="#shows/<%= show.id %>"><%= show.escape('name') %></a></h3>
+<td class="poster-col">
+  <% if (show.get('poster_path')) { %>
+  <a href="#shows/<%= show.id %>">
+    <img src="https://image.tmdb.org/t/p/w92<%= show.get('poster_path') %>" alt="">
+  </a>
+  <% } %>
+</td>
+<td><a href="#shows/<%= show.id %>"><%= show.escape('name') %><a></td>
+<td>
+  <%= _.map(this.shelvesWithShow(this.shelves, this.model), function(shelf) { return shelf.get('title')}).join(', ') %>
+</td>
+<td>
+  <%= GoodShows.dateFormat(show.get('date_added')) %>
+</td>

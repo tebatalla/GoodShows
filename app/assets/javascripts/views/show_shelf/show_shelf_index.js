@@ -85,7 +85,8 @@ GoodShows.Views.ShowShelvesIndex = Backbone.CompositeView.extend({
     }
     var showShelfShowView = new GoodShows.Views.ShowShelfShow({
       model: model,
-      shows: model.shows()
+      shows: model.shows(),
+      collection: this.collection
     });
     this._currentShelf && this.removeSubview('.shelf-show',this._currentShelf);
     this._currentShelf = showShelfShowView;

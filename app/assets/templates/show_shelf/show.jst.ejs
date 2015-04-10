@@ -1,8 +1,24 @@
-<h4><%= shelf.escape("title") %>
-  <% if (shelf.id !== 0) { %>
-  <small class="pull-right">
-    <button class="delete-shelf btn btn-danger btn-xs">Remove Shelf</button>
-  </small>
-  <% } %>
-</h4>
-<div class="shelf-show-items"></div>
+<div class="row shelf-show-header">
+<div class="col-xs-12">
+  <h4><%= shelf.escape("title") %>
+    <% if (shelf.id !== 0) { %>
+    <small class="pull-right">
+      <button class="delete-shelf btn btn-danger btn-xs">Remove Shelf</button>
+    </small>
+    <% } %>
+  </h4>
+</div>
+</div>
+<div class="shelf-show row">
+  <table class="table table-responsive shelf-show-table">
+    <thead>
+      <tr>
+        <th class="poster-col">Poster</th>
+        <th>Name</th>
+        <th>Shelves</th>
+        <th>Date Added</th>
+      </tr>
+    </thead>
+    <tbody class="shelf-show-items"></tbody>
+  </table>
+</div>

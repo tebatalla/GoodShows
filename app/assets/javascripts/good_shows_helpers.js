@@ -1,19 +1,9 @@
-window.GoodShows = window.GoodShows || {
-  Models: {},
-  Collections: {},
-  Views: {},
-  Routers: {},
-  initialize: function($rootEl) {
-    new GoodShows.Routers.Router({
-      $rootEl: $rootEl
-    });
-    Backbone.history.start();
-  }
-};
+window.GoodShows = window.GoodShows || {};
 
-$(document).ready(function(){
-  GoodShows.initialize($('#goodshows'));
-});
+GoodShows.dateFormat = function (date) {
+  return new Date(date).toLocaleDateString('en-US',
+    { year: 'numeric', month: 'long', day: 'numeric' });
+};
 
 (function($) {
 var re = /([^&=]+)=?([^&]*)/g;
