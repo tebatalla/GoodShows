@@ -24,6 +24,18 @@ GoodShows.Views.ShowShelfShowItem = Backbone.View.extend({
 
   tagName: 'tr',
 
+  events: {
+    'click .remove-show': 'removeShowFromShelf'
+  },
+
+  removeShowFromShelf: function() {
+    this.model.removeFromShelf({
+      success: function () {
+        this.collection.remove(this.model);
+      }.bind(this)
+    });
+  },
+
   hasShow: function(shelf, show) {
     return _.contains(shelf.shows().pluck('id'), show.id);
   },

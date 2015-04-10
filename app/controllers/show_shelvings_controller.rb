@@ -9,7 +9,9 @@ class ShowShelvingsController < ApplicationController
   end
 
   def destroy
-    
+    @show_shelving = ShowShelving.find(params[:id])
+    @show_shelving.destroy
+    render json: @show_shelving
   end
 
   private

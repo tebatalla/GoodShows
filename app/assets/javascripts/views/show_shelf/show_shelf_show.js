@@ -10,10 +10,14 @@ GoodShows.Views.ShowShelfShow = Backbone.CompositeView.extend({
     return this;
   },
 
-  initialize: function () {
-    this.listenTo(this.model.shows(), 'add', this.addShowsToShelfShow);
+  initialize: function (options) {
+    if (options) {
+      this.shows = options.shows;
+    }
+    this.listenTo(this.shows, 'add', this.addShowsToShelfShow);
     this.listenTo(this.model, 'sync', this.render);
-    this.model.shows().each(this.addShowsToShelfShow.bind(this));
+    this.shows.each(this.addShowsToShelfShow.bind(this));
+    this.listenTo(this.shows, 'remove', this.removeShowFromShelf.bind(this));
   },
 
   events: {
@@ -31,9 +35,18 @@ GoodShows.Views.ShowShelfShow = Backbone.CompositeView.extend({
     } 
   },
 
+  removeShowFromShelf: function (show) {
+    _(this.subviews('.shelf-show-items')).each(function (subview) {
+      if(subview.model == show) {
+        this.removeSubview('.shelf-show-items', subview);
+      }
+    }.bind(this));
+  },
+
   addShowsToShelfShow: function (show) {
     var showShelfShowItem = new GoodShows.Views.ShowShelfShowItem({
       model: show,
+      collection: this.shows,
       shelves: this.collection,
       shelf: this.model
     });

@@ -15,3 +15,4 @@ json.extract! show,
   :created_by
 
 json.date_added shelf.show_shelvings.find_by_show_id(show).created_at
+json.shelving_id shelf.show_shelvings.find_by_show_id(show).id
