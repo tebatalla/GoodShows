@@ -1,6 +1,6 @@
 class Api::FriendProposalsController < ApplicationController
   def index
-    @friend_proposals = current_user.desired_friends.includes(:friend_proposals)
+    @friend_proposals = current_user.friend_proposals.includes(:requested)
     render :index
   end
 

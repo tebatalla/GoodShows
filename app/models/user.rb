@@ -34,16 +34,18 @@ class User < ActiveRecord::Base
   has_many :friend_proposals,
            class_name: 'FriendRequest',
            foreign_key: :requester_id,
-           dependent: :destroy
+           dependent: :destroy,
+           inverse_of: :requester
 
   has_many :friend_requests,
            class_name: 'FriendRequest',
            foreign_key: :target_id,
-           dependent: :destroy
+           dependent: :destroy,
+           inverse_of: :requested
 
-  has_many :desired_friends, through: :friend_proposals, source: :requested
+  has_many :desired_friends, through: :friend_proposals, source: :requested, inverse_of: :requesters
 
-  has_many :requesters, through: :friend_requests, source: :requester
+  has_many :requesters, through: :friend_requests, source: :requester, inverse_of: :desired_friends
 
   attr_reader :password
 
