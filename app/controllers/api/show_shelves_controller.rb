@@ -3,15 +3,17 @@ class Api::ShowShelvesController < ApplicationController
 
   def index
     if params[:user_id]
-      @shelves = User.find(params[:user_id]).show_shelves.includes(:shows, :show_shelvings)
+      # N+1 query on show_shelvings
+      # @shelvings = User.find(params[:user_id]).show_shelvings.pluck(:id, :created_at, :show_id)
+      @shelves = User.find(params[:user_id]).show_shelves.includes(shows: :show_shelvings)
     else
-      @shelves = current_user.show_shelves.includes(:shows, :show_shelvings)
+      @shelves = current_user.show_shelves.includes(shows: :show_shelvings)
     end
     render :index
   end
 
   def show
-    @shelf = ShowShelf.includes(:shows, :show_shelvings).find(params[:id])
+    @shelf = ShowShelf.includes(shows: :show_shelvings).find(params[:id])
     render :show
   end
 

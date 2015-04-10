@@ -21,6 +21,8 @@ class User < ActiveRecord::Base
            class_name: 'ShowShelf',
            foreign_key: :owner_id,
            dependent: :destroy
+  
+  has_many :show_shelvings, through: :show_shelves, source: :show_shelvings
 
   has_many :shows, through: :show_shelves, source: :shows
 
@@ -43,9 +45,9 @@ class User < ActiveRecord::Base
            dependent: :destroy,
            inverse_of: :requested
 
-  has_many :desired_friends, through: :friend_proposals, source: :requested, inverse_of: :requesters
+  has_many :desired_friends, through: :friend_proposals, source: :requested
 
-  has_many :requesters, through: :friend_requests, source: :requester, inverse_of: :desired_friends
+  has_many :requesters, through: :friend_requests, source: :requester
 
   attr_reader :password
 

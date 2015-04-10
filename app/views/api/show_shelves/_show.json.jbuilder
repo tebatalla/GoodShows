@@ -14,5 +14,5 @@ json.extract! show,
   :in_production,
   :created_by
 
-json.date_added shelf.show_shelvings.find_by_show_id(show).created_at
-json.shelving_id shelf.show_shelvings.find_by_show_id(show).id
+json.date_added show.show_shelvings.find_by_shelf_id(shelf).created_at
+json.shelving_id show.show_shelvings.find_by_shelf_id(shelf).id

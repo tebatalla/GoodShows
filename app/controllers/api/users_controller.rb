@@ -2,6 +2,14 @@ class Api::UsersController < ApplicationController
   before_action :ensure_logged_in
 
   def show
+    if params[:id]
+      @user = User.includes(:friends,
+        show_shelves: :shows,
+        friend_requests: :requester,
+        friend_proposals: :requested).find(params[:id])
+    else
+      @user = current_user.includes(:friends, show_shelves: :shows)
+    end
     render :show
   end
 
@@ -11,6 +19,6 @@ class Api::UsersController < ApplicationController
     else
       @friends = current_user.friends
     end
-    render :index
+    render :friends
   end
 end

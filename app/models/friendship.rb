@@ -11,6 +11,7 @@
 
 class Friendship < ActiveRecord::Base
   validates :user_id, :friend_id, presence: true
+  validate :cannot_friend_self
   validates :user_id, uniqueness: { scope: :friend_id,
     message: "You can only friend a person once" }
   belongs_to :user
@@ -18,8 +19,14 @@ class Friendship < ActiveRecord::Base
 
   def self.create_friendship(friend, friendee)
     Friendship.transaction do
-      Friendship.create(user_id: friend, friend_id: friendee)
-      Friendship.create(user_id: friendee, friend_id: friend)
+      Friendship.create(user_id: friend.id, friend_id: friendee.id)
+      Friendship.create(user_id: friendee.id, friend_id: friend.id)
+    end
+  end
+
+  def cannot_friend_self
+    if(user_id == friend_id)
+      errors.add(:friend_id, "You cannot friend yourself")
     end
   end
 end

@@ -1,0 +1,1 @@
+json.extract! friend_proposal, :id, :requester_id, :target_id
