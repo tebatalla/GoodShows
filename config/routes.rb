@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resource :session, only: [:new, :create, :destroy]
   root to: 'static_pages#index'
 
-  namespace :api do
+  namespace :api, defaults: { format: :json }  do
     resources :show_shelves, only: [:show, :index, :create, :destroy]
     resources :shows, only: [:show, :index]
     resources :show_shelvings, only: [:create, :destroy]
