@@ -7,17 +7,17 @@ Rails.application.routes.draw do
     resources :users, only: [:show] do
       member do
         get :friends
-        post '/friend_requests', to: 'friend_requests#create'
-        post '/friend_requests', to: 'friend_requests#accept'
       end
     end
+    get '/profile', to: 'users#show'
     resources :show_shelves, only: [:show, :index, :create, :destroy]
     resources :shows, only: [:show, :index]
     resources :show_shelvings, only: [:create, :destroy]
     resources :friendships, only: [:destroy]
     get '/friends', to: 'users#friends'
     resources :friend_requests, only: [:index, :destroy]
-    resources :friend_proposals, only: [:index, :destroy]
+    resources :friend_proposals, only: [:index, :destroy, :create]
+    post '/friend_requests', to: 'friend_requests#accept'
     delete '/remove_show_from_all_shelves', to: 'show_shelvings#remove_show_from_all'
   end
 end

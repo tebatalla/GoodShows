@@ -6,6 +6,7 @@ GoodShows.Routers.Router = Backbone.Router.extend({
   routes: {
     '': 'home',
     'show-shelves': 'showMyShelves',
+    'profile': 'profile',
     'shows/:id': 'showShow',
     'users/:id': 'profile',
     'users/:id/show-shelves': 'showShelves',
@@ -24,7 +25,16 @@ GoodShows.Routers.Router = Backbone.Router.extend({
   },
 
   profile: function (id) {
-
+    if (!id) {
+      this.user = new GoodShows.Models.User({
+        url: 'api/profile'
+      });
+    } else {
+      this.user = new GoodShows.Models.User({
+        id: id
+      });
+    }
+    this.user.fetch({});
   },
 
   showSearch: function(queryString) {

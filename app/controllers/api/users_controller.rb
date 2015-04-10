@@ -8,14 +8,17 @@ class Api::UsersController < ApplicationController
         friend_requests: :requester,
         friend_proposals: :requested).find(params[:id])
     else
-      @user = current_user.includes(:friends, show_shelves: :shows)
+      @user = User.includes(:friends,
+        show_shelves: :shows,
+        friend_requests: :requester,
+        friend_proposals: :requested).find_by_session_token(session[:session_token])
     end
     render :show
   end
 
   def friends
     if params[:id]
-      @friends = User.find(:id).friends
+      @friends = User.find(params[:id]).friends
     else
       @friends = current_user.friends
     end
