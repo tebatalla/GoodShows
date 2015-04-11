@@ -2,8 +2,7 @@ GoodShows.Views.ShowShelfShow = Backbone.CompositeView.extend({
   template: JST['show_shelf/show'],
   render: function () {
     var content = this.template({
-      shelf: this.model,
-      collection: this.collection
+      shelf: this.model
     });
     this.$el.html(content);
     this.attachSubviews();
@@ -14,10 +13,11 @@ GoodShows.Views.ShowShelfShow = Backbone.CompositeView.extend({
     if (options) {
       this.shows = options.shows;
     }
+
     this.listenTo(this.shows, 'add', this.addShowsToShelfShow);
-    this.listenTo(this.model, 'sync', this.render);
     this.shows.each(this.addShowsToShelfShow.bind(this));
     this.listenTo(this.shows, 'remove', this.removeShowFromShelf.bind(this));
+    this.listenTo(this.model, 'sync', this.render);
   },
 
   events: {

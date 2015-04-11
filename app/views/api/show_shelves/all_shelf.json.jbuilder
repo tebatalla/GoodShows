@@ -3,7 +3,7 @@ shows = []
 json.id 0
 json.owner_id @user.id
 json.title 'All'
-json.shelf_owner current_user == @user.id
+json.shelf_owner current_user.id == @user.id
 json.default_shelf true
 @shelves.each do |shelf|
   shows << shelf.shows

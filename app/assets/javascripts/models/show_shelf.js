@@ -2,11 +2,14 @@ GoodShows.Models.ShowShelf = Backbone.Model.extend({
   urlRoot: 'api/show_shelves/',
 
   initialize: function(options) {
-    if(options.userId){
+    if(options){
       this.userId = options.userId;
+      if(options.url){
+        this.url = options.url;
+      }
     }
   },
-
+  
   shows: function () {
     if (!this._shows) {
       this._shows = new GoodShows.Collections.Shows([], { shelf: this });
