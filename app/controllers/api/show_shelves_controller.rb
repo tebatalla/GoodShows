@@ -1,6 +1,19 @@
 class Api::ShowShelvesController < ApplicationController
   before_action :ensure_logged_in
 
+  def all_shelf
+    @user
+    if params[:user_id]
+      @user = User.find(params[:user_id])
+    else
+      @user = current_user
+    end
+      # N+1 query on show_shelvings
+      # @shelvings = User.find(params[:user_id]).show_shelvings.pluck(:id, :created_at, :show_id)
+      @shelves = @user.show_shelves.includes(shows: :show_shelvings)
+    render :all_shelf
+  end
+
   def index
     if params[:user_id]
       # N+1 query on show_shelvings

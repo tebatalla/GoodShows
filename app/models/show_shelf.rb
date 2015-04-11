@@ -21,10 +21,14 @@ class ShowShelf < ActiveRecord::Base
   before_update :not_a_reserved_shelf
   before_destroy :not_a_reserved_shelf
 
+  DEFAULT_SHELVES = [
+    "Want to Watch", "Currently Watching", "Watched"
+  ]
+
   default_scope { order("created_at") }
 
   def not_a_reserved_shelf
-    ["Want to Watch", "Currently Watching", "Watched"].none? do |shelf|
+    DEFAULT_SHELVES.none? do |shelf|
       title == shelf
     end
   end
