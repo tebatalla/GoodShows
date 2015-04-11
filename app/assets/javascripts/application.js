@@ -17,6 +17,7 @@
 //= require backbone
 //= require bootstrap-sprockets
 //= require good_shows
+//= require typed
 //= require_tree ../templates
 //= require_tree ./utils
 //= require_tree ./models

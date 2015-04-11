@@ -5,11 +5,35 @@
   <%= auth_input  %>
   <div class="form-group">
     <label for="user-email">Email</label>
-      <input type="email" id="user-email" class="form-control" name="user[email]" value="<%= user.email %>">
+      <input type="email" id="user-email" class="form-control email" name="user[email]" value="<%= user.email %>">
   </div>
   <div class="form-group">
     <label for="user-password">Password</label>
-      <input type="password" id="user-password" name="user[password]" class="form-control">
+      <input type="password" id="user-password" name="user[password]" class="form-control password">
   </div>
-  <%= button_to text, users_url, class: "btn btn-defaul" %>
+  <div class="form-group">
+    <%= button_to text, users_url, class: "btn btn-success" %>
+    <button class="btn btn-primary pull-right guest">Guest</button>
+  </div>
 </form>
+<script>
+  $(function(){
+    var options = {
+      strings: ['guest@example.com'],
+      typeSpeed: 20,
+      callback: function () {
+        $(".password").typed({
+          strings: ['password'],
+          typeSpeed: 10,
+          callback: function () {
+            $('.new-session').submit();
+          }
+        });
+      }
+    };
+    $('.guest').click( function (event) {
+      event.preventDefault();
+      $(".email").typed(options);
+    });
+  });
+</script>
