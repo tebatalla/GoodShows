@@ -8,13 +8,13 @@ GoodShows.Collections.Users = Backbone.Collection.extend({
       this.master = options.master;
     }
   },
-  model: function () {
+  model: function (attrs, options) {
     if(this.master) {
-      return new GoodShows.Models.User({
+      return new GoodShows.Models.User(attrs, {
         master: this.master
       });
     } else {
-      return new GoodShows.Models.User();
+      return new GoodShows.Models.User(attrs,{});
     }
   }
 });

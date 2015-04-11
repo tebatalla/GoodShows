@@ -35,6 +35,11 @@ GoodShows.Routers.Router = Backbone.Router.extend({
       });
     }
     this.user.fetch({});
+    var view = new GoodShows.Views.UserProfile({
+      model: this.user
+    });
+
+    this._swapView(view);
   },
 
   showSearch: function(queryString) {

@@ -35,7 +35,7 @@ GoodShows.Models.User = Backbone.Model.extend({
       delete response.show_shelves;
     }
     if (response.friends) {
-      this.friends().set(response.friends);
+      this.friends().set(response.friends, { parse: true });
       delete response.friends;
     }
     if (response.friend_proposals) {
@@ -51,10 +51,8 @@ GoodShows.Models.User = Backbone.Model.extend({
   },
 
   initialize: function(options) {
-    if (options) {
-      this.url = function () {
-        return options.url;
-      };
+    if (options && options.url) {
+      this.url = options.url;
     }
   }
 });
