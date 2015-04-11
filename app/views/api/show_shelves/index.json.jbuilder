@@ -1,6 +1,4 @@
 json.array! @shelves do |shelf|
-  json.extract! shelf, :id, :title, :owner_id, :created_at, :updated_at
-  json.shows(shelf.shows) do |show|
-    json.partial! 'api/show_shelves/show', show: show, shelf: shelf
-  end
+  json.partial! 'api/show_shelves/show', shelf: shelf
+  json.shelf_owner
 end 
