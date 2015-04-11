@@ -10,5 +10,5 @@ json.default_shelf true
 end
 json.shows shows.flatten do |show|
   json.partial! 'api/shows/show', show: show
-  json.show_owner true
+  json.show_owner (current_user.id == @user.id)
 end
