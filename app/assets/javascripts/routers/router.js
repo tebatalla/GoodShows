@@ -59,7 +59,9 @@ GoodShows.Routers.Router = Backbone.Router.extend({
     if(this._currentView && this._currentView.shelfView && this._currentView.userId === id) {
       this._currentView.swapShowShelfView(this._shelfModel(shelfId));
     } else {
-      this.shelves = this.shelves || new GoodShows.Collections.ShowShelves();
+      this.shelves = new GoodShows.Collections.ShowShelves([], {
+        owner_id: id
+      });
       this.shelves.fetch({
         data: {
           user_id: id
@@ -77,27 +79,25 @@ GoodShows.Routers.Router = Backbone.Router.extend({
   },
 
   showMyShelves: function () {
-    if (this._currentView && this._currentView.shelfView) {
-      this._currentView.swapShowShelfView(this._shelfModel());
-    } else {
-      this.shelves = this.shelves || new GoodShows.Collections.ShowShelves();
-      this.shelves.fetch();
-      var view = new GoodShows.Views.ShowShelvesIndex({
-        collection: this.shelves,
-        model: this._shelfModel(),
-        allShelf: this.shelves.allShowsShelf(),
-        userId: this._shelfModel().get('owner_id')
-      });
+    this.shelves = new GoodShows.Collections.ShowShelves();
+    this.shelves.fetch();
+    var view = new GoodShows.Views.ShowShelvesIndex({
+      collection: this.shelves,
+      model: this._shelfModel(),
+      allShelf: this.shelves.allShowsShelf(),
+      userId: this._shelfModel().get('owner_id')
+    });
 
-      this._swapView(view);
-    }
+    this._swapView(view);
   },
 
   showShelves: function(id) {
     if (this._currentView && this._currentView.shelfView && this._currentView.userId === id) {
       this._currentView.swapShowShelfView(this._shelfModel());
     } else {
-      this.shelves = this.shelves || new GoodShows.Collections.ShowShelves({});
+      this.shelves = new GoodShows.Collections.ShowShelves([],{
+        owner_id: id
+      });
       this.shelves.fetch({
         data: {
           user_id: id

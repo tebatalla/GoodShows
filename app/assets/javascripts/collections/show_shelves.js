@@ -1,13 +1,28 @@
 GoodShows.Collections.ShowShelves = Backbone.Collection.extend({
-  model: GoodShows.Models.ShowShelf,
+  model: function (attrs, options) {
+    if(this.owner_id) {
+      return new GoodShows.Models.ShowShelf(attrs, {
+        owner_id: this.owner_id
+      });
+    } else {
+      return new GoodShows.Models.ShowShelf(attrs,options);
+    }
+  },
+
   url: '/api/show_shelves/',
 
   getOrFetch: function (id) {
     var showShelf = this.get(id);
 
     if (!showShelf) {
-      showShelf = new GoodShows.Models.ShowShelf({ id: id });
+      showShelf = new GoodShows.Models.ShowShelf({
+        id: id,
+        owner_id: this.owner_id
+      });
       showShelf.fetch({
+        data: {
+          user_id: this.owner_id
+        },
         success: function () {
           this.add(showShelf);
         }.bind(this),
@@ -46,8 +61,10 @@ GoodShows.Collections.ShowShelves = Backbone.Collection.extend({
     return this._allShowsShelf;
   },
 
-  initialize: function(owner_id) {
-    this.owner_id = owner_id;
+  initialize: function(attrs, options) {
+    if(options) {
+      this.owner_id = options.owner_id;
+    }
   },
 
   comparator: 'created_at'

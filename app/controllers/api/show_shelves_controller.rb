@@ -13,8 +13,21 @@ class Api::ShowShelvesController < ApplicationController
   end
 
   def show
-    @shelf = ShowShelf.includes(shows: :show_shelvings).find(params[:id])
-    render :show
+    if params[:user_id]
+      @shelf = ShowShelf
+        .joins(:user)
+        .includes(shows: :show_shelvings)
+        .where('users.id' => params[:user_id])
+        .find_by_id(params[:id])
+    else
+      @shelf = ShowShelf.includes(shows: :show_shelvings).find(params[:id])
+    end
+    if @shelf
+      render :show
+    else
+      render json: { error: "Shelf id for user does not exist", 
+        status: :unprocessable_entity }, status: :unprocessable_entity
+    end
   end
 
   def create
@@ -35,6 +48,6 @@ class Api::ShowShelvesController < ApplicationController
   private
 
   def shelf_params
-    params.permit(:title)
+    params.permit(:title,:user_id)
   end
 end
