@@ -31,13 +31,19 @@ GoodShows.Views.UserProfile = Backbone.CompositeView.extend({
     event.preventDefault();
     this.$name = $('.name');
     this.$edit = $('<form class="edit-name-form form-inline h1">')
-      .append('<input class="form-control" name="user[name]" value="'+this.model.get('name')+'">');
-    this.$edit.append('<button type="submit" class="btn btn-primary">Edit</button>')
+      .append('<input class="form-control name-input" name="user[name]" value="'+this.model.get('name')+'">')
+      .append('<button type="submit" class="btn btn-primary">Edit</button>');
     this.$name.replaceWith(this.$edit);
+    this.$('.name-input').focus();
+    this.delegateEvents();
+  },
+
+  dismissEdit: function () {
+    this.$edit.replaceWith(this.$name);
+    this.delegateEvents();
   },
 
   uploadPicture: function () {
-
     filepicker.setKey('ATkVBrDeT9Cx6oytknKgHz');
     filepicker.pick(
       function(Blob){
@@ -54,6 +60,7 @@ GoodShows.Views.UserProfile = Backbone.CompositeView.extend({
       patch: true,
       success: function () {
         this.$edit.replaceWith(this.$name);
+        this.delegateEvents();
       }.bind(this)
     });
   },
