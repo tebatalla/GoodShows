@@ -1,11 +1,10 @@
-
-  <div class="col-xs-2 friend-image">
-    <a href="#users/<%= friend.id %>">
-      <img src="<%= friend.get('file_url') %>" alt="<%= friend.escape("name") %>" class="img-responsive img-rounded">
-    </a>
-  </div>
-  <div class="col-xs-10 friend-name">
-    <a href="#users/<%= friend.id %>">
-      <p class="h4"><%= friend.escape("name") %></p>
-    </a>
-  </div>
+<div class="col-xs-2 friend-image">
+  <a href="#users/<%= friend.id %>">
+    <img src="<%= friend.get('file_url') %>" alt="<%= friend.escape("name") %>" class="img-responsive img-rounded">
+  </a>
+</div>
+<div class="col-xs-10 friend-name">
+  <a href="#users/<%= friend.id %>">
+    <p class="h4"><%= friend.escape("name") %></p>
+  </a>
+</div>
