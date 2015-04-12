@@ -38,8 +38,8 @@ class Api::ShowShelvesController < ApplicationController
     if @shelf
       render :show
     else
-      render json: { error: "Shelf id for user does not exist", 
-        status: :unprocessable_entity }, status: :unprocessable_entity
+      render json: { error: "Shelf id for user does not exist" },
+             status: :unprocessable_entity
     end
   end
 

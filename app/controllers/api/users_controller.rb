@@ -23,8 +23,7 @@ class Api::UsersController < ApplicationController
       @user.update_attributes(api_user_params)
       render :show
     else
-      render json: { error: "You must login as this user", 
-        status: :forbidden }, status: :forbidden
+      render json: { error: "You must login as this user" }, status: :forbidden
     end
   end
 

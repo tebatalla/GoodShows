@@ -25,6 +25,14 @@ GoodShows.Views.UserProfile = Backbone.CompositeView.extend({
     this.listenTo(this.model, "sync change:name", this.render);
     this.addFriendsList();
     this.addShelvesList();
+    this.addProfileOption();
+  },
+
+  addProfileOption: function () {
+    var view = new GoodShows.Views.ProfileOptionView({
+      model: this.model
+    });
+    this.addSubview('.user-profile-option', view);
   },
 
   editNameForm: function () {

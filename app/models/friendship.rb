@@ -19,8 +19,8 @@ class Friendship < ActiveRecord::Base
 
   def self.create_friendship(friend, friendee)
     Friendship.transaction do
-      Friendship.create(user_id: friend.id, friend_id: friendee.id)
-      Friendship.create(user_id: friendee.id, friend_id: friend.id)
+      Friendship.create(user_id: friend, friend_id: friendee)
+      Friendship.create(user_id: friendee, friend_id: friend)
     end
   end
 
