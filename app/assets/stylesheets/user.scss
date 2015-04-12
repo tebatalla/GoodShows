@@ -30,7 +30,7 @@ button.hover-over-start, a.hover-over-start {
   display: none;
 }
 
-.name:hover {
+.name:hover, .friend-name:hover {
   button.hover-over-start, a.hover-over-start {
     display: inline;
   }

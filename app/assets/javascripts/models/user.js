@@ -43,7 +43,7 @@ GoodShows.Models.User = Backbone.Model.extend({
       delete response.friend_proposals;
     }
     if (response.friend_requests) {
-      this.friendRequests().set(response.friend_requests, {parse: true });
+      this.friendRequests().set(response.friend_requests, { parse: true });
       delete response.friend_requests;
     }
 

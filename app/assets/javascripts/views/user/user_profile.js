@@ -26,6 +26,7 @@ GoodShows.Views.UserProfile = Backbone.CompositeView.extend({
     this.addFriendsList();
     this.addShelvesList();
     this.addProfileOption();
+    this.addFriendRequestsList();
   },
 
   addProfileOption: function () {
@@ -78,12 +79,20 @@ GoodShows.Views.UserProfile = Backbone.CompositeView.extend({
   },
 
   addFriendsList: function () {
-
     var friendsListView = new GoodShows.Views.FriendsList({
       collection: this.model.friends()
     });
 
     this.addSubview('.friends-list-wrapper', friendsListView);
+  },
+
+  addFriendRequestsList: function () {
+    var friendsListView = new GoodShows.Views.FriendRequestsList({
+      collection: this.model.friendRequests(),
+      user: this.model
+    });
+
+    this.addSubview('.friend-requests-list-wrapper', friendsListView);
   },
 
   addShelvesList: function () {
