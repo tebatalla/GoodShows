@@ -69,13 +69,8 @@ GoodShows.Views.ShowShelvesIndex = Backbone.CompositeView.extend({
   },
 
   addAllShowShelvesIndexItem: function () {
-
-    var ownerId = this.collection.first() && this.collection.first().get('owner_id');
-
     var allItemIndex = new GoodShows.Views.ShowShelvesIndexItem({
-      model: this.allShelf.set({
-        owner_id: ownerId
-      })
+      model: this.allShelf
     });
 
     this.unshiftSubview('.shelf-sidebar', allItemIndex);
