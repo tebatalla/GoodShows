@@ -1,0 +1,16 @@
+.user-picture {
+  position: relative;
+}
+
+.user-picture-edit {
+  position: absolute;
+  bottom: 3px;
+  right: 17px;
+  height: 15px;
+  display: none;
+  color: #777777;
+}
+
+.user-picture:hover .user-picture-edit {
+  display: inline-block;
+}

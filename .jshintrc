@@ -3,6 +3,7 @@
     "GoodShows",
     "Backbone",
     "_",
-    "JST"
+    "JST",
+    "filepicker"
   ]
 }

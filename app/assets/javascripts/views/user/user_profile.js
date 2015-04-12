@@ -15,7 +15,7 @@ GoodShows.Views.UserProfile = Backbone.CompositeView.extend({
   events: {
     'click .edit-name': 'editNameForm',
     'submit .edit-name-form': 'editUser',
-    'click .upload-picture': 'uploadPicture'
+    'click .user-picture-edit': 'uploadPicture'
   },
 
   initialize: function (options) {
@@ -44,12 +44,16 @@ GoodShows.Views.UserProfile = Backbone.CompositeView.extend({
   },
 
   uploadPicture: function () {
+    event.preventDefault();
     filepicker.setKey('ATkVBrDeT9Cx6oytknKgHz');
-    filepicker.pick(
-      function(Blob){
-        console.log(Blob.url);
-      }
-    );
+    filepicker.pick({ mimetype: 'image/*', maxSize: 1024*1024*10 }, function(Blob){
+      this.model.save({
+        file_url: Blob.url
+      }, {
+        url: '/api/users/' + this.model.id,
+        patch: true
+      });
+    }.bind(this));
   },
 
   editUser: function (event) {
