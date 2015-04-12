@@ -25,3 +25,13 @@ div.friends-list {
   min-height: 200px;
   height: 80%;
 }
+
+button.hover-over-start, a.hover-over-start {
+  display: none;
+}
+
+.name:hover {
+  button.hover-over-start, a.hover-over-start {
+    display: inline;
+  }
+}
