@@ -14,3 +14,14 @@
 .user-picture:hover .user-picture-edit {
   display: inline-block;
 }
+
+.friends-list-item {
+  border: 1px solid #e7e7e7;
+  padding: 2px 0;
+}
+
+div.friends-list {
+  overflow: scroll;
+  min-height: 200px;
+  height: 80%;
+}
