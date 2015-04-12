@@ -16,6 +16,18 @@ class Api::UsersController < ApplicationController
     render :show
   end
 
+  def update
+    @user = User.find(params[:id])
+    if @user.id == current_user.id
+      @user = current_user
+      @user.update_attributes(api_user_params)
+      render :show
+    else
+      render json: { error: "You must login as this user", 
+        status: :forbidden }, status: :forbidden
+    end
+  end
+
   def friends
     if params[:id]
       @friends = User.find(params[:id]).friends
@@ -23,5 +35,11 @@ class Api::UsersController < ApplicationController
       @friends = current_user.friends
     end
     render :friends
+  end
+
+  private
+
+  def api_user_params
+    params.require(:user).permit(:name, :file_url)
   end
 end
