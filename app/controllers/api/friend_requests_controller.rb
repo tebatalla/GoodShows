@@ -15,7 +15,7 @@ class Api::FriendRequestsController < ApplicationController
                   @friend_request.requester_id,
                   @friend_request.target_id)
       @friend_request.destroy
-      render partial: 'api/users/show', user: @friend
+      render partial: 'api/users/show', locals: { user: @friend }
     else
       render json: { error: 'Friend request unable to process' },
              status: :unprocessable_entity
