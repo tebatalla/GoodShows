@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     resources :show_shelves, only: [:show, :index, :create, :destroy]
     get '/show_shelves_all', to: 'show_shelves#all_shelf'
     resources :shows, only: [:show, :index]
+    resources :reviews, only: [:index, :create, :show, :destroy]
     resources :show_shelvings, only: [:create, :destroy]
     resources :friendships, only: [:destroy]
     get '/friends', to: 'users#friends'

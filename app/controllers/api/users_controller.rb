@@ -36,6 +36,10 @@ class Api::UsersController < ApplicationController
     render :friends
   end
 
+  def reviews
+    
+  end
+
   private
 
   def api_user_params

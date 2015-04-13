@@ -20,7 +20,7 @@ class Api::ShowShelvesController < ApplicationController
       # @shelvings = User.find(params[:user_id]).show_shelvings.pluck(:id, :created_at, :show_id)
       @shelves = User.find(params[:user_id]).show_shelves.includes(shows: :show_shelvings)
     else
-      @shelves = current_user.show_shelves.includes(shows: :show_shelvings)
+      @shelves = current_user.show_shelves.includes(:user, shows: :show_shelvings)
     end
     render :index
   end
@@ -33,7 +33,7 @@ class Api::ShowShelvesController < ApplicationController
         .where('users.id' => params[:user_id])
         .find_by_id(params[:id])
     else
-      @shelf = ShowShelf.includes(shows: :show_shelvings).find(params[:id])
+      @shelf = ShowShelf.includes(:user, shows: :show_shelvings).find(params[:id])
     end
     if @shelf
       render :show

@@ -6,4 +6,6 @@ json.shows(shelf.shows) do |show|
   json.date_added show.show_shelvings.find_by_shelf_id(shelf).created_at
   json.shelving_id show.show_shelvings.find_by_shelf_id(shelf).id
   json.show_owner (current_user.id == shelf.owner_id)
+  json.avg_rating show.reviews.average(:rating)
+  json.user_rating @user_rating
 end

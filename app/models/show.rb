@@ -56,4 +56,26 @@ class Show < ActiveRecord::Base
       end
     end.to_h
   end
+  # N+1 query on show's user rating
+  # def self.show_with_user_rating(show_id, user_id)
+  #   show = Show.find_by_sql([<<-SQL, user_id, show_id])
+  #     SELECT
+  #       shows.*,
+  #       (
+  #         SELECT reviews.rating as user_rating
+  #         FROM
+  #           reviews
+  #           JOIN
+  #           users ON reviews.author_id = users.id
+  #         WHERE
+  #           users.id = ? AND
+  #           reviews.show_id = shows.id
+  #       ) as user_rating
+  #     FROM
+  #       shows
+  #     WHERE
+  #       shows.id = ?;
+  #   SQL
+  #   show[0]
+  # end
 end

@@ -13,3 +13,9 @@ json.extract! show,
   :last_air_date,
   :in_production,
   :created_by
+
+user_rating = show.reviews.where(author_id: current_user.id)
+user_rating = user_rating && user_rating.pluck(:rating).first
+
+json.avg_rating show.reviews.average(:rating)
+json.user_rating user_rating
