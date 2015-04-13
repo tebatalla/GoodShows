@@ -9,8 +9,6 @@ GoodShows.Views.ShowShelfButton = Backbone.View.extend({
     });
   
     this.$el.html(content);
-
-    this.delegateEvents();
   
     return this;
   },
@@ -22,7 +20,7 @@ GoodShows.Views.ShowShelfButton = Backbone.View.extend({
       this.show = options.show;
     }
 
-    this.listenTo(this.collection, "sync change", this.render);
+    this.listenTo(this.collection, "sync", this.render);
   },
 
   events: {

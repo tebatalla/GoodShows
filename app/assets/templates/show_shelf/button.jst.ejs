@@ -1,6 +1,8 @@
 <% var wantToWatchId = _.find(shelves.models, function(shelf) {
           return shelf.get('title') === 'Want to Watch'
-        }).id %>
+        }) %>
+<% wantToWatchId = wantToWatchId && wantToWatchId.id %>
+<% if (wantToWatchId) { %>
 <button type="button" class="btn btn-success add-show-to-shelf"
         data-id="<%= wantToWatchId %>" <%= hasShow(shelves.get(wantToWatchId), (show)) ? 'disabled="disable"' : "" %>>
         Want to watch
@@ -20,3 +22,4 @@
     </li>
   <% }); %>
 </ul>
+<% } %>

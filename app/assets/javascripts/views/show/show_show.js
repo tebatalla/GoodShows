@@ -2,7 +2,6 @@ GoodShows.Views.ShowShow = Backbone.View.extend({
   template: JST['show/show'],
 
   render: function () {
-    if (this.model) {};
     var content = this.template({
       show: this.model
     });

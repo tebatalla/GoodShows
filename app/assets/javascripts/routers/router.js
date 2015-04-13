@@ -129,7 +129,7 @@ GoodShows.Routers.Router = Backbone.Router.extend({
     this.show = new GoodShows.Models.Show({
       id: id
     });
-    this.shelves = this.shelves || new GoodShows.Collections.ShowShelves();
+    this.shelves = new GoodShows.Collections.ShowShelves();
     this.show.fetch();
     this.shelves.fetch();
     var view = new GoodShows.Views.ShowShow({
@@ -137,13 +137,19 @@ GoodShows.Routers.Router = Backbone.Router.extend({
       shelves: this.shelves
     });
 
-    this._swapView(view);
+    this._swapViewWithoutRender(view);
   },
 
   _swapView: function(view) {
     this._currentView && this._currentView.remove();
     this._currentView = view;
     this.$rootEl.html(view.render().$el);
+  },
+
+  _swapViewWithoutRender: function(view) {
+    this._currentView && this._currentView.remove();
+    this._currentView = view;
+    this.$rootEl.html(view.$el);
   },
 
   _shelfModel: function(shelfId) {
