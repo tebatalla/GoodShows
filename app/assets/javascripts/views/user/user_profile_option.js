@@ -12,15 +12,15 @@ GoodShows.Views.ProfileOptionView = Backbone.View.extend({
   template: JST['user/user_profile_option'],
 
   initialize: function() {
-    this.listenTo(this.model, 'sync', this.render);
+    this.listenTo(this.model, 'sync change', this.render);
   },
 
   tagName: 'span',
 
   events: {
-    'click .unfriend-request': 'unfriend',
-    'click .send-friend-request': 'friend',
-    'click .pending-friend-request': 'acceptFriend'
+    'click button.unfriend-request': 'unfriend',
+    'click button.send-friend-request': 'friend',
+    'click button.pending-friend-request': 'acceptFriend'
   },
 
   unfriend: function() {
@@ -38,6 +38,9 @@ GoodShows.Views.ProfileOptionView = Backbone.View.extend({
       success: function (friendProposal) {
         $(event.currentTarget).toggleClass('active');
         this.model.friendProposals().add(friendProposal);
+        this.model.set({
+          pending_proposal: true
+        });
       }.bind(this),
       error: function () {
         $(event.currentTarget).toggleClass('active');
@@ -55,6 +58,10 @@ GoodShows.Views.ProfileOptionView = Backbone.View.extend({
       success: function (friend) {
         $(event.currentTarget).toggleClass('active');
         this.model.friends().add(friend);
+        this.model.set({
+          current_friend: true,
+          pending_request: false
+        })
       }.bind(this),
       error: function () {
         $(event.currentTarget).toggleClass('active');

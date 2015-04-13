@@ -6,10 +6,11 @@
     </small>
   </a>
 <% } else if (user.get('current_friend')) { %>
-  <button class="hover-over-start unfriend-request btn btn-danger">
+  <button class="hover-over-start unfriend-request btn btn-danger has-spinner">
     <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
     <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
     Unfriend
+    <span class="spinner"><i class="fa fa-spin fa-spinner"></i></span>
   </button>
 <% } else if (user.get('pending_proposal')) { %>
   <button class="hover-over-start pending-friend-proposal btn btn-default disabled">
@@ -17,9 +18,10 @@
     Friend request pending
   </button>
 <% } else if (user.get('pending_request')) { %>
-  <button class="hover-over-start pending-friend-request btn btn-primary">
+  <button class="hover-over-start pending-friend-request btn btn-primary has-spinner">
     <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
     Accept friend request
+    <span class="spinner"><i class="fa fa-spin fa-spinner"></i></span>
   </button>
 <% } else { %>
   <button class="hover-over-start send-friend-request btn btn-primary has-spinner">
