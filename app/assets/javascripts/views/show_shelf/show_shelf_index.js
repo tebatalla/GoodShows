@@ -27,7 +27,6 @@ GoodShows.Views.ShowShelvesIndex = Backbone.CompositeView.extend({
     event.preventDefault();
     var data = $(event.currentTarget).serializeJSON();
     var newShelf = new GoodShows.Models.ShowShelf(data);
-    // $('#add-shelf-modal').modal('hide');
     newShelf.save({}, {
       success: function () {
         $('#add-shelf-modal').modal('hide');

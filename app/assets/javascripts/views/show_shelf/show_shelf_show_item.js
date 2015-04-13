@@ -33,6 +33,7 @@ GoodShows.Views.ShowShelfShowItem = Backbone.View.extend({
     this.model.removeFromShelf({
       success: function () {
         this.collection.remove(this.model);
+        this.shelves.fetch();
       }.bind(this)
     });
   },
