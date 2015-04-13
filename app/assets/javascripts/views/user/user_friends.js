@@ -13,6 +13,7 @@ GoodShows.Views.FriendsList = Backbone.CompositeView.extend({
 
   initialize: function() {
     this.listenTo(this.collection, 'add', this.addFriendsListItem);
+    this.listenTo(this.collection, 'remove', this.removeFriendsListItem);
     this.listenTo(this.collection, 'sync', this.render);
   },
 
@@ -22,5 +23,13 @@ GoodShows.Views.FriendsList = Backbone.CompositeView.extend({
     });
 
     this.addSubview('.friends-list', friendsListItemView);
-  }
+  },
+
+  removeFriendsListItem: function (friend) {
+    _(this.subviews('.friends-list')).each(function (subview) {
+      if(subview.model == friend) {
+        this.removeSubview('.friends-list', subview);
+      }
+    }.bind(this));
+  },
 }); 

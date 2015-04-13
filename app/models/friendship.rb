@@ -25,6 +25,13 @@ class Friendship < ActiveRecord::Base
     end
   end
 
+  def self.destroy_friendship(friend, friendee)
+    Friendship.transaction do
+      Friendship.where(user_id: friend, friend_id: friendee).destroy_all
+      Friendship.where(user_id: friendee, friend_id: friend).destroy_all
+    end
+  end
+
   def cannot_friend_self
     errors.add(:friend_id, 'You cannot friend yourself') if user_id == friend_id
   end

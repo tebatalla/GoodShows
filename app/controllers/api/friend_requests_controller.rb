@@ -10,12 +10,12 @@ class Api::FriendRequestsController < ApplicationController
                       .find_by_requester_id(
                         friend_proposal_params[:requester_id])
     if @friend_request
-      @friend = Friendship
-                .create_friendship(
-                  @friend_request.requester_id,
-                  @friend_request.target_id)
+      @friendship = Friendship
+                    .create_friendship(
+                      @friend_request.requester_id,
+                      @friend_request.target_id)
       @friend_request.destroy
-      render partial: 'api/users/show', locals: { user: @friend.friend_target }
+      render partial: 'api/users/show', locals: { user: @friendship.user }
     else
       render json: { error: 'Friend request unable to process' },
              status: :unprocessable_entity
