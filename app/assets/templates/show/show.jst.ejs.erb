@@ -1,6 +1,6 @@
 <div class="col-sm-3 col-sm-offset-1">
   <div class="show-poster text-center">
-    <img src="https://image.tmdb.org/t/p/w185<%= show.get('poster_path') %>" alt="">
+    <img src="https://image.tmdb.org/t/p/w185<%%= show.get('poster_path') %>" alt="">
   </div>
   <div class="add-to-shelf text-center">
     
@@ -8,9 +8,9 @@
 </div>
 <div class="col-sm-7">
   <div class="show-main row">
-    <h1><%= show.escape('name') %></h1>
-    <p>Created by: <%= show.escape('created_by') %></p>
-    <p class="lead"><%= show.escape('overview') %></p>
+    <h1><%%= show.escape('name') %></h1>
+    <p>Created by: <%%= show.escape('created_by') %></p>
+    <p class="lead"><%%= show.escape('overview') %></p>
   </div>
   <div class="show-details row">
     <div class="show-detail row">
@@ -18,7 +18,7 @@
         Number of Seasons
       </div>
       <div class="detail-body col-xs-8">
-        <%= show.escape('number_of_seasons')  %>
+        <%%= show.escape('number_of_seasons')  %>
       </div>
     </div>
     <div class="show-detail row">
@@ -26,7 +26,7 @@
         Number of Episodes
       </div>
       <div class="detail-body col-xs-8">
-        <%= show.escape('number_of_episodes')  %>
+        <%%= show.escape('number_of_episodes')  %>
       </div>
     </div>
     <div class="show-detail row">
@@ -34,7 +34,7 @@
         Networks
       </div>
       <div class="detail-body col-xs-8">
-        <%= show.escape('networks')  %>
+        <%%= show.escape('networks')  %>
       </div>
     </div>
     <div class="show-detail row">
@@ -42,7 +42,7 @@
         Genres
       </div>
       <div class="detail-body col-xs-8">
-        <%= show.escape('genres') %>
+        <%%= show.escape('genres') %>
       </div>
     </div>
     <div class="show-detail row">
@@ -50,7 +50,7 @@
         Episode Run Time
       </div>
       <div class="detail-body col-xs-8">
-        <%= show.escape('episode_run_time') %>
+        <%%= show.escape('episode_run_time') %>
       </div>
     </div>
     <div class="show-detail row">
@@ -58,13 +58,13 @@
         Dates
       </div>
       <div class="detail-body col-xs-8">
-        <%= new Date(show.escape('first_air_date')).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) %> 
-        to <%= new Date(show.escape('last_air_date')).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) %>
-        <%= show.get('in_production') ? "(In Production)" : "" %>
+        <%%= new Date(show.escape('first_air_date')).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) %> 
+        to <%%= new Date(show.escape('last_air_date')).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) %>
+        <%%= show.get('in_production') ? "(In Production)" : "" %>
       </div>
     </div>
   </div>
 </div>
 <div class="row">
-  <img src="assets/themoviedb.svg" alt="" class="center-block img-responsive">
+  <%= image_tag("themoviedb.svg", class: "center-block img-responsive") %>
 </div>

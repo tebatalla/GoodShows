@@ -1,5 +1,5 @@
 <div class="row search-result-header">
-  <h2>Search results for "<%= query.query %>"</h2>
+  <h2>Search results for "<%%= query.query %>"</h2>
 </div>
 <div class="row">
   <table class="table table-responsive search-results-table">
@@ -14,5 +14,5 @@
   </table>
 </div>
 <div class="row">
-  <img src="assets/themoviedb.svg" alt="" class="center-block img-responsive">
+  <%= image_tag("themoviedb.svg", class: "center-block img-responsive") %>
 </div>
