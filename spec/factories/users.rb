@@ -8,7 +8,8 @@
 #  session_token   :string           not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
-#  name            :string
+#  name            :string           default("User"), not null
+#  file_url        :string           default("https://www.filepicker.io/api/file/uI0gnDYKTO2cMbhpKjus"), not null
 #
 
 FactoryGirl.define do

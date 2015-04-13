@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150412032134) do
+ActiveRecord::Schema.define(version: 20150413161047) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,19 @@ ActiveRecord::Schema.define(version: 20150412032134) do
   end
 
   add_index "friendships", ["user_id", "friend_id"], name: "index_friendships_on_user_id_and_friend_id", unique: true, using: :btree
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer  "author_id",  null: false
+    t.integer  "show_id",    null: false
+    t.integer  "rating",     null: false
+    t.text     "review"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "reviews", ["author_id", "show_id"], name: "index_reviews_on_author_id_and_show_id", unique: true, using: :btree
+  add_index "reviews", ["author_id"], name: "index_reviews_on_author_id", using: :btree
+  add_index "reviews", ["show_id"], name: "index_reviews_on_show_id", using: :btree
 
   create_table "show_shelves", force: :cascade do |t|
     t.integer  "owner_id",   null: false

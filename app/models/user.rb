@@ -8,7 +8,8 @@
 #  session_token   :string           not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
-#  name            :string
+#  name            :string           default("User"), not null
+#  file_url        :string           default("https://www.filepicker.io/api/file/uI0gnDYKTO2cMbhpKjus"), not null
 #
 
 class User < ActiveRecord::Base
@@ -49,6 +50,8 @@ class User < ActiveRecord::Base
   has_many :desired_friends, through: :friend_proposals, source: :requested
 
   has_many :requesters, through: :friend_requests, source: :requester
+
+  has_many :reviews, foreign_key: :author_id, class_name: 'Review'
 
   attr_reader :password
 

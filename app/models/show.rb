@@ -24,6 +24,7 @@ class Show < ActiveRecord::Base
   validates :name, presence: true
   has_many :show_shelvings, class_name: 'ShowShelving'
   has_many :shelves, through: :show_shelvings, source: :shelf
+  has_many :reviews
 
   def self.find_or_get_from_api(id)
     show = Show.find_by_id(id)
