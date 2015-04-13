@@ -9,6 +9,7 @@ GoodShows.Views.ShowShow = Backbone.View.extend({
     this.$el.html(content);
 
     this.$('.add-to-shelf').html(this.shelvesButton.$el);
+    this.$('.show-rating').html(this.rating.$el);
   
     return this;
   },
@@ -23,6 +24,10 @@ GoodShows.Views.ShowShow = Backbone.View.extend({
       show: this.model
     });
 
+    this.rating = new GoodShows.Views.ShowRating({
+      model: this.model
+    });
+
     this.listenTo(this.model, 'sync', this.render);
 
   },
@@ -32,5 +37,6 @@ GoodShows.Views.ShowShow = Backbone.View.extend({
   remove: function () {
     Backbone.View.prototype.remove.call(this);
     this.shelvesButton && this.shelvesButton.remove();
+    this.rating && this.rating.remove();
   }
 });

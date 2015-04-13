@@ -20,5 +20,21 @@ GoodShows.Models.Show = Backbone.Model.extend({
         },
         success: options.success
     });
-  }
+  },
+
+  reviews: function () {
+    if (!this._reviews) {
+      this._reviews = new GoodShows.Collections.Reviews([], { show: this });
+    }
+    return this._reviews;
+  },
+
+  parse: function (response) {
+    if (response.reviews) {
+      this.reviews().set(response.reviews, { parse: true });
+      delete response.reviews;
+    }
+
+    return response;
+  },
 });

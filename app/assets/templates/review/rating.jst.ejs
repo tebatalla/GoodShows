@@ -1,0 +1,9 @@
+<input type="number"
+       class="rating show-rating-stars"
+       min=0
+       max=5
+       step=1
+       value="<%= rating %>"
+       data-size="xs">
+<p>Avg Rating: <%= avgRating || 0 %></p>
+<p>User Rating: <%= userRating || "Not rated" %></p>
