@@ -45,11 +45,12 @@ GoodShows.Views.ShowShow = Backbone.CompositeView.extend({
   },
 
   addReview: function (review) {
-    var view = new GoodShows.Views.ReviewIndexItem({
+    var view = new GoodShows.Views.ShowReviewIndexItem({
       model: review,
       user: review.user()
     });
-
-    this.addSubview('.reviews-index', view);
+    if (review.get('review')){
+      this.addSubview('.reviews-index', view);
+    }
   }
 });

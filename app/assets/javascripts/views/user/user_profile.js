@@ -23,6 +23,7 @@ GoodShows.Views.UserProfile = Backbone.CompositeView.extend({
 
     }
     this.listenTo(this.model, "sync change:name", this.render);
+    this.listenTo(this.model.reviews(), 'add', this.addReviewItem);
     this.addFriendsList();
     this.addShelvesList();
     this.addProfileOption();
@@ -102,5 +103,14 @@ GoodShows.Views.UserProfile = Backbone.CompositeView.extend({
     });
 
     this.addSubview('.shelves-list', showsListView);
+  },
+
+  addReviewItem: function (review) {
+    var view = new GoodShows.Views.UserReviewIndexItem({
+      model: review
+    });
+    if (review.get('rating') || review.get('review')) {
+      this.addSubview('.reviews-list', view);
+    };
   }
 });

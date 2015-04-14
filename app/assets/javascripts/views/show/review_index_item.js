@@ -1,4 +1,4 @@
-GoodShows.Views.ReviewIndexItem = Backbone.View.extend({
+GoodShows.Views.ShowReviewIndexItem = Backbone.View.extend({
   render: function () {
     var content = this.template({
       review: this.model,
@@ -6,6 +6,13 @@ GoodShows.Views.ReviewIndexItem = Backbone.View.extend({
     });
   
     this.$el.html(content);
+
+    this.$(".show-rating-stars").rating({
+      showCaption: false,
+      readonly: true,
+      showClear: false,
+      ratingClass: ' readonly'
+    });
   
     return this;
   },
