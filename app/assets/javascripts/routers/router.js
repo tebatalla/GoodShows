@@ -5,7 +5,6 @@ GoodShows.Routers.Router = Backbone.Router.extend({
 
   routes: {
     '': 'home',
-    'show-shelves': 'showMyShelves',
     'profile': 'profile',
     'shows/:id': 'showShow',
     'users/:id': 'profile',
@@ -66,66 +65,44 @@ GoodShows.Routers.Router = Backbone.Router.extend({
     if(this._currentView && this._currentView.shelfView && this._currentView.userId === id) {
       this._currentView.swapShowShelfView(this._shelfModel(shelfId));
     } else {
-      this.shelves = new GoodShows.Collections.ShowShelves([], {
-        owner_id: id
+      this.user = new GoodShows.Models.User({
+        id: id
       });
-      this.shelves.fetch({
-        data: {
-          user_id: id
-        }
-      });
-      this.shelves.allShowsShelf().fetch({
+      this.user.fetch();
+      this.user.showShelves().allShowsShelf().fetch({
         data: {
           user_id: id
         }
       });
       var view = new GoodShows.Views.ShowShelvesIndex({
-        collection: this.shelves,
-        userId: id,
-        allShelf: this.shelves.allShowsShelf(),
-        model: this._shelfModel(shelfId)
+        collection: this.user.showShelves(),
+        model: this._shelfModel(shelfId),
+        allShelf: this.user.showShelves().allShowsShelf(),
+        user: this.user
       });
 
       this._swapView(view);
     }
   },
 
-  showMyShelves: function () {
-    this.shelves = new GoodShows.Collections.ShowShelves();
-    this.shelves.fetch();
-    this.shelves.allShowsShelf().fetch();
-    var view = new GoodShows.Views.ShowShelvesIndex({
-      collection: this.shelves,
-      model: this._shelfModel(),
-      allShelf: this.shelves.allShowsShelf(),
-      userId: this._shelfModel().get('owner_id')
-    });
-
-    this._swapView(view);
-  },
-
   showShelves: function(id) {
     if (this._currentView && this._currentView.shelfView && this._currentView.userId === id) {
       this._currentView.swapShowShelfView(this._shelfModel());
     } else {
-      this.shelves = new GoodShows.Collections.ShowShelves([],{
-        owner_id: id
+      this.user = new GoodShows.Models.User({
+        id: id
       });
-      this.shelves.fetch({
-        data: {
-          user_id: id
-        }
-      });
-      this.shelves.allShowsShelf().fetch({
+      this.user.fetch();
+      this.user.showShelves().allShowsShelf().fetch({
         data: {
           user_id: id
         }
       });
       var view = new GoodShows.Views.ShowShelvesIndex({
-        collection: this.shelves,
+        collection: this.user.showShelves(),
         model: this._shelfModel(),
-        allShelf: this.shelves.allShowsShelf(),
-        userId: id
+        allShelf: this.user.showShelves().allShowsShelf(),
+        user: this.user
       });
 
       this._swapView(view);
@@ -162,9 +139,9 @@ GoodShows.Routers.Router = Backbone.Router.extend({
   _shelfModel: function(shelfId) {
     var shelf;
     if (shelfId) {
-      shelf = this.shelves.getOrFetch(shelfId);
+      shelf = this.user.showShelves().getOrFetch(shelfId);
     } else {
-      shelf = this.shelves.allShowsShelf();
+      shelf = this.user.showShelves().allShowsShelf();
     }
 
     return shelf;
