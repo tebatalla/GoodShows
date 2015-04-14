@@ -1,4 +1,4 @@
-GoodShows.Views.ShowShow = Backbone.View.extend({
+GoodShows.Views.ShowShow = Backbone.CompositeView.extend({
   template: JST['show/show'],
 
   render: function () {
@@ -17,6 +17,7 @@ GoodShows.Views.ShowShow = Backbone.View.extend({
     });
 
     this.$('.show-rating').html(this.rating.render().$el);
+    this.attachSubviews();
   
     return this;
   },
@@ -32,13 +33,23 @@ GoodShows.Views.ShowShow = Backbone.View.extend({
     });
 
     this.listenTo(this.model, 'sync', this.render);
+    this.listenTo(this.model.reviews(), 'add', this.addReview)
   },
 
   className: 'row show-page',
 
   remove: function () {
-    Backbone.View.prototype.remove.call(this);
+    Backbone.CompositeView.prototype.remove.call(this);
     this.shelvesButton && this.shelvesButton.remove();
     this.rating && this.rating.remove();
+  },
+
+  addReview: function (review) {
+    var view = new GoodShows.Views.ReviewIndexItem({
+      model: review,
+      user: review.user()
+    });
+
+    this.addSubview('.reviews-index', view);
   }
 });

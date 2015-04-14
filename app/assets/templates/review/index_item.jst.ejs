@@ -1,0 +1,17 @@
+<div class="col-xs-2 user-box">
+  <div class="row">
+    <div class="col-xs-12 user-picture">
+      <a href="#users/<%= user.id %>">
+        <img src="<%= user.get('file_url') %>" alt="<%= user.escape('name') %>" class="img-rounded img-responsive">
+      </a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 text-center">
+      <a class="h4" href="#users/<%= user.id %>"><%= user.escape('name') %></a>
+    </div>
+  </div>
+</div>
+<div class="col-xs-10 user-review">
+  <%= marked(review.escape('review'))  %>
+</div>
