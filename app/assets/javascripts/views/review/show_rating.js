@@ -13,7 +13,8 @@ GoodShows.Views.ShowRating = Backbone.View.extend({
   
     this.$(".show-rating-stars").rating({
       showCaption: false,
-      ratingClass: ' ' + this.typeOfRating + '-rating-stars'
+      ratingClass: ' ' + this.typeOfRating + '-rating-stars',
+      step: 1
     });
 
     return this;
@@ -49,7 +50,9 @@ GoodShows.Views.ShowRating = Backbone.View.extend({
       this.reviews = options.reviews;
     }
 
-    if (this.model.get('avg_rating')) {
+    if (this.model.get('current_user_rating')) {
+      this.typeOfRating = 'user';
+    } else if (this.model.get('avg_rating')) {
       this.typeOfRating = 'average';
     } else {
       this.typeOfRating = 'user';
