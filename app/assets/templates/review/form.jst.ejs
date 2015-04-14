@@ -22,7 +22,9 @@
         <textarea name="review" class="form-control review-write" rows="20" style="border:none;"><%= review && review.escape('review') %></textarea>
         <span class="help-block"><a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet" target="_blank">Markdown supported</a></span>
       </div>
-      <div role="tabpanel" class="tab-pane review-preview" id="preview"></div>
+      <div role="tabpanel" class="tab-pane review-preview" id="preview">
+        <%= review && marked(review.escape('review'))  %>
+      </div>
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 

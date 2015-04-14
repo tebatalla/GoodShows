@@ -8,6 +8,13 @@
   <div class="show-rating text-center">
     
   </div>
+  <div class="show-review text-center">
+    <%% if(show.get('current_user_reviewed')) { %>
+    <a href="#shows/<%%= show.id %>/reviews/<%%= show.get('current_user_review_id') %>/edit">Edit your review</a>
+    <%% } else { %>
+    <a href="#shows/<%%= show.id %>/reviews/new">Add a review!</a>
+    <%% } %>
+  </div>
 </div>
 <div class="col-sm-7">
   <div class="show-main row">

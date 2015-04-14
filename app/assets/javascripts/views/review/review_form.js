@@ -18,11 +18,15 @@ GoodShows.Views.ReviewForm = Backbone.View.extend({
     }
 
     this.listenToOnce(this.show, 'sync', this.render);
+    if (this.model) {
+      this.listenTo(this.model, 'sync', this.render);
+    }
     this.listenTo(this.show, 'sync', this.addShowRating);
   },
 
   events: {
-    'keyup .review-write': 'updatePreview'
+    'keyup .review-write': 'updatePreview',
+    'submit form': 'updateReview'
   },
 
   addShowRating: function () {
@@ -40,5 +44,28 @@ GoodShows.Views.ReviewForm = Backbone.View.extend({
     var text = $(event.currentTarget).val();
 
     this.$('.review-preview').html(marked(text));
+  },
+
+  updateReview: function (event) {
+    event.preventDefault();
+    var review = $(event.currentTarget).serializeJSON().review;
+
+    var newRating = this.show.reviews().select( function (review) {
+      return review.user().get('current_user');
+    });
+    if (newRating.length > 0) {
+      newRating = newRating[0];
+    } else{
+      newRating = new GoodShows.Models.Review({
+        show_id: this.show.id
+      });
+    }
+
+    newRating.save({ review: review }, {
+      success: function() {
+        Backbone.history.navigate('shows/' + this.show.id, { trigger: true });
+      }.bind(this),
+      patch: true
+    });
   }
 });

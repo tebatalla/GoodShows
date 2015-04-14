@@ -14,8 +14,10 @@ json.extract! show,
   :in_production,
   :created_by
 
-user_rating = show.reviews.where(author_id: current_user.id)
-user_rating = user_rating && user_rating.pluck(:rating).first
+user_review = show.reviews.where(author_id: current_user.id)
+user_rating = user_review && user_review.pluck(:rating).first
 
 json.avg_rating show.reviews.average(:rating)
 json.current_user_rating user_rating
+json.current_user_reviewed user_review.first && user_review.first.review && !user_review.first.review.empty?
+json.current_user_review_id user_review.first && user_review.first.id
