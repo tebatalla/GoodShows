@@ -9,10 +9,14 @@ $border: 1px solid #EBE8D5;
 }
 
 .shelf-sidebar{
-  border-right: $border;
   margin-top: 10px;
 }
 
 .shelf-sidebar-item {
   margin: 5px 0;
+}
+
+.shelf-show-wrapper {
+  border-left: $border;
+  padding-left: 20px;
 }

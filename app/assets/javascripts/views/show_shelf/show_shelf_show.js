@@ -51,5 +51,6 @@ GoodShows.Views.ShowShelfShow = Backbone.CompositeView.extend({
       shelf: this.model
     });
     this.addSubview('.shelf-show-items', showShelfShowItem);
-  }
+  },
+  className: 'shelf-show-wrapper'
 });
