@@ -1,5 +1,10 @@
 <div class="row shelf-header">
-  <h1>My Shows
+  <h1>
+  <% if (user.get('current_user')) { %>
+  My shows
+  <% } else { %>
+  <%= user.escape('name') %>'s shows
+  <% } %>
     <small>
       <button class="btn btn-primary btn-xs add-shelf" data-toggle="modal" data-target="#add-shelf-modal">
         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>

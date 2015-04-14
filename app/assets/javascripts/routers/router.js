@@ -81,7 +81,7 @@ GoodShows.Routers.Router = Backbone.Router.extend({
         user: this.user
       });
 
-      this._swapView(view);
+      this._swapViewWithoutRender(view);
     }
   },
 
@@ -105,7 +105,7 @@ GoodShows.Routers.Router = Backbone.Router.extend({
         user: this.user
       });
 
-      this._swapView(view);
+      this._swapViewWithoutRender(view);
     }
   },
 
