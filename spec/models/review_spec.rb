@@ -5,7 +5,7 @@
 #  id         :integer          not null, primary key
 #  author_id  :integer          not null
 #  show_id    :integer          not null
-#  rating     :integer          not null
+#  rating     :integer
 #  review     :text
 #  created_at :datetime         not null
 #  updated_at :datetime         not null

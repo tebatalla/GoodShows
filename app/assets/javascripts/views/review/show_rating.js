@@ -2,17 +2,9 @@ GoodShows.Views.ShowRating = Backbone.View.extend({
   template: JST['review/rating'],
   render: function () {
 
-    var typeOfRating;
-    if (this.model.get('user_rating')) {
-      typeOfRating = 'user';
-    } else {
-      typeOfRating = 'average';
-    }
-    var rating = this.model.get('user_rating') || this.model.get('avg_rating') || 0;
-
     var content = this.template({
-      rating: rating,
-      typeOfRating: typeOfRating,
+      rating: this.rating,
+      typeOfRating: this.typeOfRating,
       avgRating: this.model.get('avg_rating'),
       userRating: this.model.get('user_rating')
     });
@@ -21,12 +13,47 @@ GoodShows.Views.ShowRating = Backbone.View.extend({
   
     this.$(".show-rating-stars").rating({
       showCaption: false,
-      ratingClass: ' ' + typeOfRating + '-rating-stars'
+      ratingClass: ' ' + this.typeOfRating + '-rating-stars'
     });
+
     return this;
   },
 
-  initialize: function () {
-    this.listenTo(this.model, 'sync', this.render);
+  events: {
+    'rating.change': 'changeRating',
+    'rating.clear': 'changeRating'
+  },
+
+  changeRating: function (event, value) {
+    var newRating = this.reviews.select( function (review) {
+      return review.user().get('current_user');
+    });
+    if (newRating.length > 0) {
+      newRating = newRating[0];
+    } else{
+      newRating = new GoodShows.Models.Review({
+        show_id: this.model.id
+      });
+    }
+    value = value || null;
+    newRating.save({ rating: value }, {
+      success: function() {
+        this.model.fetch();
+      }.bind(this),
+      patch: true
+    });
+  },
+
+  initialize: function (options) {
+    if (options) {
+      this.reviews = options.reviews;
+    }
+
+    if (this.model.get('user_rating')) {
+      this.typeOfRating = 'user';
+    } else {
+      this.typeOfRating = 'average';
+    }
+    this.rating = this.model.get('user_rating') || this.model.get('avg_rating') || 0;
   }
 });
