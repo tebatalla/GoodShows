@@ -15,6 +15,13 @@ GoodShows.Models.Review = Backbone.Model.extend({
     return this._show;
   },
 
+  comments: function () {
+    if (!this.comments) {
+      this.comments = new GoodShows.Collections.Comments([], { review: this });
+    }
+    return this.comments;
+  },
+
   parse: function (response) {
     if (response.user) {
       this.user().set(response.user, { parse: true });
@@ -23,6 +30,10 @@ GoodShows.Models.Review = Backbone.Model.extend({
     if (response.show) {
       this.show().set(response.show, { parse: true });
       delete response.show;
+    }
+    if (response.comments) {
+      this.comments().set(response.comments, { parse: true });
+      delete response.comments;
     }
 
     return response;
