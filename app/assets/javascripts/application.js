@@ -18,6 +18,7 @@
 //= require bootstrap-sprockets
 //= require good_shows
 //= require typed
+//= require marked.min
 //= require star-rating.min
 //= require_tree ../templates
 //= require_tree ./utils

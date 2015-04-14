@@ -1,0 +1,30 @@
+<div class="col-sm-3 col-sm-offset-1">
+  <div class="show-poster text-center">
+    <a href="#shows/<%= show.id %>"><img src="https://image.tmdb.org/t/p/w185<%= show.get('poster_path') %>" alt=""></a>
+  </div>
+</div>
+<div class="col-sm-7">
+  <div class="row">
+    <h5 class="col-xs-2">Your rating</h5>
+    <div class="col-xs-6 show-rating text-center"></div>
+  </div>
+  <div class="row">
+    <h3 class="col-xs-12">What did you think?</h3>
+  </div>
+  <div role="tabpanel">
+    <ul class="nav nav-tabs" role="tablist">
+      <li role="presentation" class="active"><a href="#write" aria-controls="write" role="tab" data-toggle="tab">Write</a></li>
+      <li role="presentation"><a href="#preview" aria-controls="preview" role="tab" data-toggle="tab">Preview</a></li>
+    </ul>
+
+    <form class="tab-content">
+      <div role="tabpanel" class="tab-pane active form-group" id="write">
+        <textarea name="review" class="form-control review-write" rows="20" style="border:none;"><%= review && review.escape('review') %></textarea>
+        <span class="help-block"><a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet" target="_blank">Markdown supported</a></span>
+      </div>
+      <div role="tabpanel" class="tab-pane review-preview" id="preview"></div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+</div>
+</div>

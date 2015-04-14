@@ -7,6 +7,9 @@ GoodShows.Routers.Router = Backbone.Router.extend({
     '': 'home',
     'profile': 'profile',
     'shows/:id': 'showShow',
+    'shows/:showId/review/new': 'newReview',
+    'shows/:showId/review/:reviewId': 'showReview',
+    'shows/:showId/review/:reviewId/edit': 'editReview',
     'users/:id': 'profile',
     'users/:id/show-shelves': 'showShelves',
     'users/:id/show-shelves/:shelfId': 'showShelf',
@@ -25,6 +28,44 @@ GoodShows.Routers.Router = Backbone.Router.extend({
       model: this.user,
       showShelves: this.user.showShelves(),
       users: this.users
+    });
+
+    this._swapView(view);
+  },
+
+  newReview: function(showId) {
+    this.show = new GoodShows.Models.Show({
+      id: showId
+    });
+    this.show.fetch();
+    var view = new GoodShows.Views.ReviewForm({
+      show: this.show
+    });
+
+    this._swapViewWithoutRender(view);
+  },
+
+  editReview: function(showId, reviewId) {
+    this.show = new GoodShows.Models.Show({
+      id: showId
+    });
+    this.show.fetch();
+    var view = new GoodShows.Views.ReviewForm({
+      show: this.show,
+      model: this.show.reviews().getOrFetch(reviewId)
+    });
+
+    this._swapView(view);
+  },
+
+  showReview: function(showId, reviewId) {
+    this.show = new GoodShows.Models.Show({
+      id: showId
+    });
+    this.show.fetch();
+    var view = new GoodShows.Views.ReviewShow({
+      show: this.show,
+      model: this.show.reviews().getOrFetch(reviewId)
     });
 
     this._swapView(view);
