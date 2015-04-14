@@ -53,6 +53,11 @@ class User < ActiveRecord::Base
 
   has_many :reviews, foreign_key: :author_id, class_name: 'Review'
 
+  has_many :comments,
+           class_name: 'Comment',
+           foreign_key: :author_id,
+           dependent: :destroy
+
   attr_reader :password
 
   def password=(password)
