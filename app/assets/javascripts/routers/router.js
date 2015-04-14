@@ -39,7 +39,7 @@ GoodShows.Routers.Router = Backbone.Router.extend({
       model: this.user
     });
 
-    this._swapView(view);
+    this._swapViewWithoutRender(view);
   },
 
   showSearch: function(queryString) {
