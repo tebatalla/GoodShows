@@ -15,10 +15,13 @@ GoodShows.Routers.Router = Backbone.Router.extend({
   },
 
   home: function () {
-    this.shelves = new GoodShows.Collections.ShowShelves();
-    this.shelves.fetch();
+    this.user = new GoodShows.Models.User({
+      url: 'api/profile'
+    });
+    this.user.fetch();
     var view = new GoodShows.Views.Home({
-      showShelves: this.shelves
+      model: this.user,
+      showShelves: this.user.showShelves()
     });
 
     this._swapView(view);
