@@ -10,6 +10,12 @@
   <%= _.map(this.shelvesWithShow(this.shelves, this.model), function(shelf) { return shelf.get('title')}).join(', ') %>
 </td>
 <td>
+  <%= show.get('avg_rating') %>
+</td>
+<td>
+  <%= show.get('user_rating') %>
+</td>
+<td>
   <%= GoodShows.dateFormat(show.get('date_added')) %>
 </td>
 <% if (show.get('show_owner')) { %>

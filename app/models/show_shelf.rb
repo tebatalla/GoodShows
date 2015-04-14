@@ -25,7 +25,7 @@ class ShowShelf < ActiveRecord::Base
     "Want to Watch", "Currently Watching", "Watched"
   ]
 
-  default_scope { order("created_at") }
+  default_scope { order("show_shelves.created_at") }
 
   def not_a_reserved_shelf
     DEFAULT_SHELVES.none? do |shelf|
