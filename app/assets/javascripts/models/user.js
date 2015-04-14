@@ -29,6 +29,13 @@ GoodShows.Models.User = Backbone.Model.extend({
     return this._friendProposals;
   },
 
+  reviews: function () {
+    if (!this._reviews) {
+      this._reviews = new GoodShows.Collections.Reviews([], { master: this });
+    }
+    return this._reviews;
+  },
+
   parse: function (response) {
     if (response.show_shelves) {
       this.showShelves().set(response.show_shelves, { parse: true });
@@ -45,6 +52,10 @@ GoodShows.Models.User = Backbone.Model.extend({
     if (response.friend_requests) {
       this.friendRequests().set(response.friend_requests, { parse: true });
       delete response.friend_requests;
+    }
+    if (response.reviews) {
+      this.reviews().set(response.reviews);
+      delete response.reviews;
     }
 
     return response;

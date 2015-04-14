@@ -22,3 +22,9 @@ if current_user == @user
     end
   end
 end
+json.reviews @user.reviews do |review|
+  json.partial! 'api/reviews/show', review: review
+  json.show do
+    json.partial! 'api/shows/show', show: review.show
+  end
+end

@@ -4,11 +4,13 @@ class Api::UsersController < ApplicationController
   def show
     if params[:id]
       @user = User.includes(:friends,
+        :reviews,
         show_shelves: :shows,
         friend_requests: :requester,
         friend_proposals: :requested).find(params[:id])
     else
       @user = User.includes(:friends,
+        :reviews,
         show_shelves: :shows,
         friend_requests: :requester,
         friend_proposals: :requested).find_by_session_token(session[:session_token])
