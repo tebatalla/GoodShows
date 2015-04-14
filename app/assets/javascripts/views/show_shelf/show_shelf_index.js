@@ -8,7 +8,9 @@ GoodShows.Views.ShowShelvesIndex = Backbone.CompositeView.extend({
   },
 
   render: function () {
-    var content = this.template();
+    var content = this.template({
+      user: this.user
+    });
   
     this.$el.html(content);
     this.attachSubviews();  
@@ -40,15 +42,16 @@ GoodShows.Views.ShowShelvesIndex = Backbone.CompositeView.extend({
 
   initialize: function (options) {
     if(options) {
-      this.userId = options.userId;
+      this.user = options.user
+      this.userId = this.user.id;
       this.shelfId = options.shelfId;
       this.allShelf = options.allShelf;
     }
 
     this.shelfView = true;
 
+    this.listenTo(this.user, "sync", this.render);
     this.listenToOnce(this.allShelf, "sync", this.addAllShowShelvesIndexItem);
-    this.listenTo(this.collection, "sync", this.render);
     this.listenTo(this.collection, "add", this.addShowShelvesIndexItem);
     this.listenTo(this.model, "sync destroy", this.swapShowShelfView);
     this.listenTo(this.collection, "remove", this.removeShowShelf);

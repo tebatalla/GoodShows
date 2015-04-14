@@ -19,7 +19,7 @@ GoodShows.Views.ShowShelfShowItem = Backbone.View.extend({
       this.shelves = options.shelves;
       this.shelf = options.shelf;
     }
-    this.listenTo(this.shelves, 'sync', this.render);
+    this.listenTo(this.shelves, 'add', this.render);
   },
 
   tagName: 'tr',
