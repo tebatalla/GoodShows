@@ -19,9 +19,13 @@ GoodShows.Routers.Router = Backbone.Router.extend({
       url: 'api/profile'
     });
     this.user.fetch();
+    this.users = new GoodShows.Collections.Users([], {
+      url: 'api/users'
+    });
     var view = new GoodShows.Views.Home({
       model: this.user,
-      showShelves: this.user.showShelves()
+      showShelves: this.user.showShelves(),
+      users: this.users
     });
 
     this._swapView(view);

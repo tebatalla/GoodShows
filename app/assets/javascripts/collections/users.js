@@ -6,6 +6,9 @@ GoodShows.Collections.Users = Backbone.Collection.extend({
   initialize: function (models, options) {
     if (options) {
       this.master = options.master;
+      if (options.url) {
+        this.url = options.url;
+      }
     }
   },
   model: function (attrs, options) {

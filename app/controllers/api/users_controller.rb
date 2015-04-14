@@ -29,6 +29,15 @@ class Api::UsersController < ApplicationController
     end
   end
 
+  def index
+    @users = User.includes(:friends,
+        :reviews,
+        show_shelves: :shows,
+        friend_requests: :requester,
+        friend_proposals: :requested).all.where.not(id: current_user.id)
+    render :index
+  end
+
   def friends
     if params[:id]
       @friends = User.find(params[:id]).friends

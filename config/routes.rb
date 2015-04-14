@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   root to: 'static_pages#index'
 
   namespace :api, defaults: { format: :json }  do
-    resources :users, only: [:show, :update] do
+    resources :users, only: [:show, :update, :index] do
       member do
         get :friends
       end
