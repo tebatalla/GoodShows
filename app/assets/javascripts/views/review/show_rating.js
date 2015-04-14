@@ -49,10 +49,10 @@ GoodShows.Views.ShowRating = Backbone.View.extend({
       this.reviews = options.reviews;
     }
 
-    if (this.model.get('current_user_rating')) {
-      this.typeOfRating = 'user';
-    } else {
+    if (this.model.get('avg_rating')) {
       this.typeOfRating = 'average';
+    } else {
+      this.typeOfRating = 'user';
     }
     this.rating = this.model.get('current_user_rating') || this.model.get('avg_rating') || 0;
   }
