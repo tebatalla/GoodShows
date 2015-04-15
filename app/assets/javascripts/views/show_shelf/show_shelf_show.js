@@ -12,6 +12,7 @@ GoodShows.Views.ShowShelfShow = Backbone.CompositeView.extend({
   initialize: function (options) {
     if (options) {
       this.shows = options.shows;
+      this.user = options.user;
     }
 
     this.listenTo(this.shows, 'add', this.addShowsToShelfShow);
@@ -29,8 +30,8 @@ GoodShows.Views.ShowShelfShow = Backbone.CompositeView.extend({
     if (this.model.id !== 0) {
       this.model.destroy({
         success: function () {
-          Backbone.history.navigate('show-shelves', { trigger: true });
-        }
+          Backbone.history.navigate('users/' + this.user.id + '/show-shelves', { trigger: true });
+        }.bind(this)
       });
     } 
   },
