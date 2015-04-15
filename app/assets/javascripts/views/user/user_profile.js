@@ -56,13 +56,23 @@ GoodShows.Views.UserProfile = Backbone.CompositeView.extend({
   uploadPicture: function () {
     event.preventDefault();
     filepicker.setKey('ATkVBrDeT9Cx6oytknKgHz');
-    filepicker.pick({ mimetype: 'image/*', maxSize: 1024*1024*10 }, function(Blob){
-      this.model.save({
-        file_url: Blob.url
-      }, {
-        url: '/api/users/' + this.model.id,
-        patch: true
-      });
+    filepicker.pick({ mimetype: 'image/*', maxSize: 1024*1024*10 }, function(Blob){ 
+      filepicker.convert(
+        Blob,
+        {
+          height: 180,
+          width: 180,
+          align: 'faces',
+        },
+        {},
+        function (newBlob) {
+          this.model.save({
+            file_url: newBlob.url
+          }, {
+            url: '/api/users/' + this.model.id,
+            patch: true
+          });
+        }.bind(this));
     }.bind(this));
   },
 
