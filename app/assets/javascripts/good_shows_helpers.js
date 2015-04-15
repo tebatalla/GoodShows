@@ -5,6 +5,11 @@ GoodShows.dateFormat = function (date) {
     { year: 'numeric', month: 'long', day: 'numeric' });
 };
 
+GoodShows.dateFormatWithTime = function (date) {
+  return new Date(date).toLocaleDateString('en-US',
+    { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+};
+
 (function($) {
 var re = /([^&=]+)=?([^&]*)/g;
 var decodeRE = /\+/g;  // Regex for replacing addition symbol with a space

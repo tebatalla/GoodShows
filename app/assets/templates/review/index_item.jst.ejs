@@ -14,13 +14,16 @@
 </div>
 <div class="col-xs-10 user-review">
   <div class="row rating">
-      <input type="number"
-         class="rating show-rating-stars"
-         min=0
-         max=5
-         step=0.01
-         value="<%= review.escape('rating') %>"
-         data-size="xs">
-    </div>
-  <%= marked(review.escape('review'))  %>
+    <input type="number"
+       class="rating show-rating-stars"
+       min=0
+       max=5
+       step=0.01
+       value="<%= review.escape('rating') %>"
+       data-size="xs">
+    <small><%= GoodShows.dateFormatWithTime(review.get('updated_at')) %></small>
+  </div>
+  <div class="row review-body">
+    <%= marked(review.escape('review'))  %>
+  </div>
 </div>

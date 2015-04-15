@@ -24,5 +24,5 @@ GoodShows.Views.ShowReviewIndexItem = Backbone.View.extend({
 
     this.listenTo(this.model, 'sync', this.render);
   },
-  className: 'row review-index-item'
+  className: 'row review-item'
 });
