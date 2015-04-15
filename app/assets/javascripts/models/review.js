@@ -16,10 +16,10 @@ GoodShows.Models.Review = Backbone.Model.extend({
   },
 
   comments: function () {
-    if (!this.comments) {
-      this.comments = new GoodShows.Collections.Comments([], { review: this });
+    if (!this._comments) {
+      this._comments = new GoodShows.Collections.Comments([], { review: this });
     }
-    return this.comments;
+    return this._comments;
   },
 
   parse: function (response) {
