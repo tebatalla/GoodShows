@@ -15,4 +15,6 @@ class Comment < ActiveRecord::Base
   belongs_to :commentable, polymorphic: true
   belongs_to :author, foreign_key: :author_id, class_name: 'User'
   validates :body, :author_id, presence: true
+
+  default_scope { order('comments.created_at DESC') }
 end

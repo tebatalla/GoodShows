@@ -14,11 +14,27 @@ GoodShows.Views.UserReviewIndexItem = Backbone.View.extend({
       showClear: false,
       ratingClass: ' readonly'
     });
+
+    this.addCommentsIndex();
   
     return this;
   },
   initialize: function () {
     this.listenTo(this.model.show(), 'change', this.render);
   },
-  className: 'row review-item'
+  className: 'row review-item',
+
+  addCommentsIndex: function () {
+    this.commentsView = new GoodShows.Views.CommentsIndex({
+      collection: this.model.comments(),
+      review: this.model
+    });
+
+    this.$('.review-body').after(this.commentsView.render().$el);
+  },
+
+  remove: function () {
+    Backbone.View.prototype.remove.call(this);
+    this.commentsView && this.commentsView.remove();
+  }
 });

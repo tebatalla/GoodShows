@@ -1,0 +1,19 @@
+.comment-index-wrapper {
+  background-color: #f8f8f8;
+  border-radius: 3px;
+}
+
+.comment-picture {
+  height: 40px;
+  display: inline-block;
+}
+
+.comment-picture img {
+  height: 100%;
+}
+
+.comment-body {
+  p {
+    word-wrap: break-word;
+  }
+}

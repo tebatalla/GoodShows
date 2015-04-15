@@ -11,5 +11,7 @@ GoodShows.Models.Comment = Backbone.Model.extend({
       this.author().set(response.author, { parse: true });
       delete response.author;
     }
+
+    return response;
   }
 });

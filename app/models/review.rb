@@ -21,4 +21,6 @@ class Review < ActiveRecord::Base
              class_name: 'User'
 
   has_many :comments, as: :commentable
+
+  default_scope { order('reviews.created_at') }
 end

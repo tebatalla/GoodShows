@@ -1,0 +1,12 @@
+<div class="comment-picture col-xs-1">
+  <a href="#users/<%= author.id %>">
+    <img src="<%= author.get('file_url') %>" alt="" class="img-rounded">
+  </a>
+</div>
+<div class="comment-body col-xs-11">
+  <strong>
+    <a href="#users/<%= author.id %>"><%= author.escape('name') %></a>
+  </strong>
+  <small><%= GoodShows.dateFormatWithTime(comment.get('updated_at')) %></small>
+  <p><%= comment.escape('body') %></p>
+</div>
