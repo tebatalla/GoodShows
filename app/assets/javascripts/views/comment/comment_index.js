@@ -11,6 +11,41 @@ GoodShows.Views.CommentsIndex = Backbone.CompositeView.extend({
     return this;
   },
 
+  events: {
+    'click .add-comment-form-button': 'renderCommentForm',
+    'click form .add-comment-cancel': 'removeCommentForm',
+    'submit form': 'addNewComment'
+  },
+
+  renderCommentForm: function (event) {
+    event.preventDefault();
+    if (!this.newComment) {
+      this.newComment = new GoodShows.Views.CommentForm({
+        review: this.review
+      });
+
+      this.$('.comment-index').append(this.newComment.render().$el);
+      this.delegateEvents();
+    }
+  },
+
+  addNewComment: function (event) {
+    event.preventDefault();
+    var comment = $(event.currentTarget).serializeJSON();
+    this.review.postComment(comment, {
+      success: function (response) {
+        this.collection.add(response, { parse: true });
+        this.removeCommentForm();
+      }.bind(this)
+    });
+  },
+
+  removeCommentForm: function (event) {
+    event && event.preventDefault();
+    this.newComment.remove();
+    this.newComment = null;
+  },
+
   initialize: function(options) {
     if (options) {
       this.review = options.review;

@@ -24,7 +24,7 @@ class Api::ReviewsController < ApplicationController
                            author: current_user,
                            body: comment_params['body'])
     if @comment.save
-      render :show
+      render partial: 'api/comments/show', locals: { comment: @comment }
     else
       render json: { errors: @comment.errors.full_messages },
              status: :unprocessable_entity

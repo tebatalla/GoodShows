@@ -1,6 +1,17 @@
 GoodShows.Models.Review = Backbone.Model.extend({
   urlRoot: '/api/reviews',
 
+  postComment: function(comment, options) {
+    return $.ajax({
+      type: 'POST',
+      url: '/api/reviews/' + this.id + '/comment',
+      dataType: 'json',
+      data: comment,
+      success: options.success,
+      error: options.error
+    });
+  },
+
   user: function () {
     if (!this._user) {
       this._user = new GoodShows.Models.User([], { review: this });

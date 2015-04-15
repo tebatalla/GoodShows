@@ -1,11 +1,16 @@
 .comment-index-wrapper {
-  background-color: #f8f8f8;
+  background-color: #ecf0f1;
   border-radius: 3px;
 }
 
 .comment-picture {
   height: 40px;
   display: inline-block;
+}
+
+.comment-index-item {
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .comment-picture img {
@@ -16,4 +21,8 @@
   p {
     word-wrap: break-word;
   }
+}
+
+.add-new-comment-form {
+  padding-bottom: 5px;
 }

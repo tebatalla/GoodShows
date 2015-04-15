@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     resources :show_shelvings, only: [:create, :destroy]
     resources :friendships, only: [:destroy]
     get '/friends', to: 'users#friends'
+    post '/reviews/:id/comment', to: 'reviews#comment'
     resources :friend_requests, only: [:index, :destroy]
     resources :friend_proposals, only: [:index, :destroy, :create]
     post '/friend_requests', to: 'friend_requests#accept'
