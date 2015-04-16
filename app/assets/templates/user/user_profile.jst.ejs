@@ -1,6 +1,6 @@
 <div class="col-sm-8 user-show">
   <div class="row user-header">
-    <div class="col-sm-2 user-picture">
+    <div class="col-lg-2 user-picture">
       <img src="<%= user.get('file_url') %>" alt="<%= user.escape('name') %>" class="img-rounded img-responsive">
       <% if (user.get('current_user')) { %>
         <a href="#" class="user-picture-edit">
@@ -8,7 +8,7 @@
         </a>
       <% } %>
     </div>
-    <div class="col-sm-10 user-details">
+    <div class="col-lg-10 user-details">
       <h1 class="name">
         <%= user.escape('name') %>
         <small class="user-profile-option">

@@ -1,9 +1,9 @@
-<div class="comment-picture col-xs-1">
+<div class="comment-picture col-sm-1">
   <a href="#users/<%= author.id %>">
-    <img src="<%= author.get('file_url') %>" alt="" class="img-rounded">
+    <img src="<%= author.get('file_url') %>" alt="" class="img-rounded center-block img-responsive">
   </a>
 </div>
-<div class="comment-body col-xs-11">
+<div class="comment-body col-sm-11">
   <strong>
     <a href="#users/<%= author.id %>"><%= author.escape('name') %></a>
   </strong>

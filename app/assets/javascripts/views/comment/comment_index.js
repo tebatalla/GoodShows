@@ -61,5 +61,10 @@ GoodShows.Views.CommentsIndex = Backbone.CompositeView.extend({
 
     this.addSubview('.comment-index', commentItem);
   },
-  className: 'row comment-index-wrapper'
+  className: 'row comment-index-wrapper',
+
+  remove: function () {
+    Backbone.CompositeView.prototype.remove.call(this);
+    this.newComment && this.newComment.remove();
+  }
 });

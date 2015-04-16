@@ -34,5 +34,10 @@ GoodShows.Views.ShowReviewIndexItem = Backbone.View.extend({
 
     this.$('.review-body').after(this.commentsView.render().$el);
   },
-  className: 'col-lg-12 review-item'
+  className: 'col-lg-12 review-item',
+
+  remove: function () {
+    Backbone.View.prototype.remove.call(this);
+    this.commentsView && this.commentsView.remove();
+  }
 });
