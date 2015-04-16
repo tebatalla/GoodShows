@@ -16,6 +16,13 @@ GoodShows.Routers.Router = Backbone.Router.extend({
     'show-search?*queryString': 'showSearch'
   },
 
+  loader: function (model, view) { 
+    view.$el.addClass('loader');
+    model.on('sync', function () {
+      view.$el.removeClass('loader');
+    });
+  },
+
   home: function () {
     this.user = new GoodShows.Models.User({
       url: 'api/profile'
@@ -43,6 +50,8 @@ GoodShows.Routers.Router = Backbone.Router.extend({
     });
 
     this._swapViewWithoutRender(view);
+
+    this.loader(this.show, view);
   },
 
   editReview: function(showId, reviewId) {
@@ -87,6 +96,7 @@ GoodShows.Routers.Router = Backbone.Router.extend({
     });
 
     this._swapViewWithoutRender(view);
+    this.loader(this.user, view);
   },
 
   showSearch: function(queryString) {
@@ -123,6 +133,7 @@ GoodShows.Routers.Router = Backbone.Router.extend({
       });
 
       this._swapViewWithoutRender(view);
+      this.loader(this.user, view);
     }
   },
 
@@ -147,6 +158,7 @@ GoodShows.Routers.Router = Backbone.Router.extend({
       });
 
       this._swapViewWithoutRender(view);
+      this.loader(this.user, view);
     }
   },
 
@@ -163,6 +175,7 @@ GoodShows.Routers.Router = Backbone.Router.extend({
     });
 
     this._swapViewWithoutRender(view);
+    this.loader(this.show, view);
   },
 
   _swapView: function(view) {
