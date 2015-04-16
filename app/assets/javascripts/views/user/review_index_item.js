@@ -22,15 +22,18 @@ GoodShows.Views.UserReviewIndexItem = Backbone.View.extend({
   initialize: function () {
     this.listenTo(this.model.show(), 'change', this.render);
   },
+
   className: 'col-lg-12 review-item',
 
   addCommentsIndex: function () {
-    this.commentsView = new GoodShows.Views.CommentsIndex({
-      collection: this.model.comments(),
-      review: this.model
-    });
+    if(!this.commentsView) {
+      this.commentsView = new GoodShows.Views.CommentsIndex({
+        collection: this.model.comments(),
+        review: this.model
+      });
 
-    this.$('.review-body').after(this.commentsView.render().$el);
+      this.$('.review-body').after(this.commentsView.render().$el);
+    }
   },
 
   remove: function () {

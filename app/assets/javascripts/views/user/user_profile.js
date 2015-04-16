@@ -8,6 +8,7 @@ GoodShows.Views.UserProfile = Backbone.CompositeView.extend({
   
     this.$el.html(content);
     this.attachSubviews();
+    this.delegateSubviewEvents();
   
     return this;
   },
@@ -22,7 +23,7 @@ GoodShows.Views.UserProfile = Backbone.CompositeView.extend({
     if(options) {
 
     }
-    this.listenTo(this.model, "sync change:name", this.render);
+    this.listenTo(this.model, "sync", this.render);
     this.listenTo(this.model.reviews(), 'add', this.addReviewItem);
     this.addFriendsList();
     this.addShelvesList();
@@ -45,12 +46,10 @@ GoodShows.Views.UserProfile = Backbone.CompositeView.extend({
       .append('<button type="submit" class="btn btn-primary">Edit</button>');
     this.$name.replaceWith(this.$edit);
     this.$('.name-input').focus();
-    this.delegateEvents();
   },
 
   dismissEdit: function () {
     this.$edit.replaceWith(this.$name);
-    this.delegateEvents();
   },
 
   uploadPicture: function () {
@@ -84,7 +83,6 @@ GoodShows.Views.UserProfile = Backbone.CompositeView.extend({
       patch: true,
       success: function () {
         this.$edit.replaceWith(this.$name);
-        this.delegateEvents();
       }.bind(this)
     });
   },
@@ -121,6 +119,6 @@ GoodShows.Views.UserProfile = Backbone.CompositeView.extend({
     });
     if (review.get('rating') || review.get('review')) {
       this.addSubview('.reviews-list', view);
-    };
+    }
   }
 });

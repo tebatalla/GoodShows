@@ -18,14 +18,13 @@ GoodShows.Views.CommentsIndex = Backbone.CompositeView.extend({
   },
 
   renderCommentForm: function (event) {
-    event.preventDefault();
+    event && event.preventDefault();
     if (!this.newComment) {
       this.newComment = new GoodShows.Views.CommentForm({
         review: this.review
       });
 
       this.$('.comment-index').append(this.newComment.render().$el);
-      this.delegateEvents();
     }
   },
 
