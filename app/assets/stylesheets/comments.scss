@@ -29,3 +29,10 @@ div.comment-body {
 .add-new-comment-form {
   padding-bottom: 5px;
 }
+
+.comment-textarea {
+  width: 80%;
+  textarea {
+    width: 100% !important;
+  }
+}
