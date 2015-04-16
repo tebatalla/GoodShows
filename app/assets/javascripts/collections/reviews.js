@@ -19,4 +19,6 @@ GoodShows.Collections.Reviews = Backbone.Collection.extend({
 
     return review;
   },
+
+  comparator: 'updated_at'
 });

@@ -4,14 +4,14 @@ class Api::UsersController < ApplicationController
   def show
     if params[:id]
       @user = User.includes(:friends,
-        :reviews,
-        show_shelves: :shows,
+        reviews: [{ comments: :author }, :show],
+        show_shelves: { shows: [{ reviews: :author }, :show_shelvings] },
         friend_requests: :requester,
         friend_proposals: :requested).find(params[:id])
     else
       @user = User.includes(:friends,
-        :reviews,
-        show_shelves: :shows,
+        reviews: [{ comments: :author }, :show],
+        show_shelves: { shows: [{ reviews: :author }, :show_shelvings] },
         friend_requests: :requester,
         friend_proposals: :requested).find_by_session_token(session[:session_token])
     end
@@ -31,8 +31,8 @@ class Api::UsersController < ApplicationController
 
   def index
     @users = User.includes(:friends,
-        :reviews,
-        show_shelves: :shows,
+        reviews: [{ comments: :author }, :show],
+        show_shelves: { shows: [{ reviews: :author }, :show_shelvings] },
         friend_requests: :requester,
         friend_proposals: :requested).all.where.not(id: current_user.id)
     render :index
