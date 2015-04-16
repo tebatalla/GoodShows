@@ -21,6 +21,7 @@ GoodShows.Views.Home = Backbone.CompositeView.extend({
 
     this.listenTo(shows, 'sync', this.syncShows);
     this.listenTo(this.users, 'add', this.addUsers);
+    this.listenTo(this.feed, 'add', this.addFeedItem);
   },
 
   addUsers: function(user) {
@@ -29,6 +30,22 @@ GoodShows.Views.Home = Backbone.CompositeView.extend({
     });
 
     this.addSubview('.users-list', userView);
+  },
+
+  addFeedItem: function(feedEvent) {
+    var itemView;
+
+    if(feedEvent.get('type') === "Review") {
+      itemView = new GoodShows.Views.ReviewEventItem({
+        model: feedEvent
+      });
+    } else if (feedEvent.get('type') === "Comment") {
+      return;
+    } else if (feedEvent.get('type') === "Shelving") {
+      return;
+    }
+
+    this.addSubview('.home-feed', itemView);
   },
 
   syncShows: function (shows) {

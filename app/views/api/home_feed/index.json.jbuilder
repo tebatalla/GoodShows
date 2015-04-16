@@ -2,6 +2,7 @@ json.array! @data do |item|
   json.user do
     json.partial! 'api/users/show', user: User.find(item.user_id)
   end
+  json.type item.type
   if item.type == "Review"
     json.review do
       json.partial! 'api/reviews/show', review: Review.find(item.item_id)
