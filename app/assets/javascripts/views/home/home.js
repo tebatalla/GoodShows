@@ -12,7 +12,9 @@ GoodShows.Views.Home = Backbone.CompositeView.extend({
     if (options) {
       this.users = options.users;
       this.showShelves = options.showShelves;
+      this.feed = options.feed;
     }
+    this.feed.fetch();
     var shows = new GoodShows.Collections.ShowsAiringToday();
     shows.fetch();
     this.users.fetch();

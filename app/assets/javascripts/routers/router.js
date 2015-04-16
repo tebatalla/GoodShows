@@ -31,10 +31,12 @@ GoodShows.Routers.Router = Backbone.Router.extend({
     this.users = new GoodShows.Collections.Users([], {
       url: 'api/users'
     });
+    this.feed = new GoodShows.Collections.HomeFeed();
     var view = new GoodShows.Views.Home({
       model: this.user,
       showShelves: this.user.showShelves(),
-      users: this.users
+      users: this.users,
+      feed: this.feed
     });
 
     this._swapView(view);
