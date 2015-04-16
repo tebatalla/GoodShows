@@ -9,7 +9,8 @@
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  name            :string           default("User"), not null
-#  file_url        :string           default("https://www.filepicker.io/api/file/uI0gnDYKTO2cMbhpKjus"), not null
+#  file_url        :string           default("https://www.filepicker.io/api/file/vet4fyS6R3W7VdqnPwt4"), not null
+#  friends_count   :integer          default(0), not null
 #
 
 class User < ActiveRecord::Base

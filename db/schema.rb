@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150415180345) do
+ActiveRecord::Schema.define(version: 20150416183122) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,10 +59,11 @@ ActiveRecord::Schema.define(version: 20150415180345) do
   add_index "reviews", ["show_id"], name: "index_reviews_on_show_id", using: :btree
 
   create_table "show_shelves", force: :cascade do |t|
-    t.integer  "owner_id",   null: false
-    t.string   "title",      null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "owner_id",                         null: false
+    t.string   "title",                            null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.integer  "show_shelvings_count", default: 0, null: false
   end
 
   add_index "show_shelves", ["owner_id"], name: "index_show_shelves_on_owner_id", using: :btree
@@ -102,6 +103,7 @@ ActiveRecord::Schema.define(version: 20150415180345) do
     t.datetime "updated_at",                                                                          null: false
     t.string   "name",            default: "User",                                                    null: false
     t.string   "file_url",        default: "https://www.filepicker.io/api/file/vet4fyS6R3W7VdqnPwt4", null: false
+    t.integer  "friends_count",   default: 0,                                                         null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

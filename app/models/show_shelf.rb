@@ -2,11 +2,12 @@
 #
 # Table name: show_shelves
 #
-#  id         :integer          not null, primary key
-#  owner_id   :integer          not null
-#  title      :string           not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id          :integer          not null, primary key
+#  owner_id    :integer          not null
+#  title       :string           not null
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  shows_count :integer          default(0), not null
 #
 
 class ShowShelf < ActiveRecord::Base

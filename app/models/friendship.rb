@@ -15,7 +15,7 @@ class Friendship < ActiveRecord::Base
   validates :user_id,
             uniqueness: { scope: :friend_id,
                           message: 'You can only friend a person once' }
-  belongs_to :user
+  belongs_to :user, counter_cache: :friends_count
   belongs_to :friend_target, class_name: 'User', foreign_key: :friend_id
 
   def self.create_friendship(friend, friendee)
