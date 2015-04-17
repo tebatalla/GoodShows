@@ -3,11 +3,12 @@ GoodShows.Views.ReviewEventItem = Backbone.View.extend({
   render: function () {
     var content = this.template({
       activity: this.model,
-      review: this.model.review()
+      review: this.model.review(),
+      show: this.model.review().show()
     });
   
     this.$el.html(content);
   
     return this;
-  },
+  }
 });

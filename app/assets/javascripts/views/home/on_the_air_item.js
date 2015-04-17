@@ -9,5 +9,5 @@ GoodShows.Views.OnTheAirViewItem = Backbone.View.extend({
   
     return this;
   },
-  className:'col-sm-2 home-show-box'
+  className:'col-lg-4 col-md-6 col-sm-12 home-show-box'
 });

@@ -1,6 +1,8 @@
 // Place all the styles related to the shows controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import "bootstrap/variables";
+
 .detail-header {
   font-weight: bold;
 }
@@ -14,5 +16,13 @@
 }
 
 div.home-show-box {
-  min-height: 305px;
+  /* Medium devices (desktops, 992px and up) */
+  @media (min-width: $screen-md-min) {
+    min-height: 260px;
+  }
+
+  // Large devices (large desktops, 1200px and up)
+  @media (min-width: $screen-lg-min) {
+    min-height: 240px;
+  }
 }

@@ -4,8 +4,12 @@ json.array! @data do |item|
   end
   json.type item.type
   if item.type == "Review"
+    review = Review.find(item.item_id)
     json.review do
-      json.partial! 'api/reviews/show', review: Review.find(item.item_id)
+      json.partial! 'api/reviews/show', review: review
+      json.show do
+        json.partial! 'api/shows/show', show: review.show
+      end
     end
   elsif item.type == 'Comment'
     comment = Comment.find(item.item_id)
@@ -13,6 +17,9 @@ json.array! @data do |item|
       json.partial! 'api/comments/show', comment: comment
       json.review do
         json.partial! 'api/reviews/show', review: comment.commentable
+        json.show do
+          json.partial! 'api/shows/show', show: comment.commentable.show
+        end
       end
     end
   elsif item.type == 'Shelving'
