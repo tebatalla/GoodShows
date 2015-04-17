@@ -34,6 +34,7 @@ gem 'font-awesome-rails'
 gem 'jquery-ui-rails'
 gem 'ejs'
 gem 'newrelic_rpm'
+gem "autoprefixer-rails"
 
 # Use Unicorn as the app server
 # gem 'unicorn'

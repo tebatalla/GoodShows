@@ -10,17 +10,24 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
- *= require_self
- *= require star-rating.min
- *= require bootstrap-theme.min
  */
 
-$grid-float-breakpoint: 992px;
 
 @import "font-awesome";
 @import "bootstrap-sprockets";
+$grid-float-breakpoint: 992px;
+@import "bootstrap/variables";
 @import "bootstrap";
+@import "bootstrap-theme.min";
+@import "star-rating.min";
+@import "comments";
+@import "reviews";
+@import "show-results-table";
+@import "show_shelves";
+@import "show_shelvings";
+@import "shows";
+@import "static_pages";
+@import "user";
 
 body {
   padding-top: 70px;
