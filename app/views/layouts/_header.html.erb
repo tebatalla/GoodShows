@@ -43,5 +43,6 @@
     event.preventDefault();
     var query = $.param($(event.currentTarget).serializeJSON());
     Backbone.history.navigate('show-search?' + query, { trigger: true });
+    $(this).find('input').val('')
   });
 </script>
