@@ -8,10 +8,10 @@
   </div>
 </div>
 <div class="col-xs-10">
-  <% if (review.get('review')) { %>
-    <h4><a href="#users/<%= user.id %>"><%= user.escape('name') %></a> reviewed <a href="#shows/<%= show.id %>"><%= show.escape('name') %></a></h4>
+  <% if (user.id === reviewAuthor.id) { %>
+    <h4><a href="#users/<%= user.id %>"><%= user.escape('name') %></a> commented on their review of <a href="#shows/<%= show.id %>"><%= show.escape('name') %></a></h4>
   <% } else { %>
-    <h4><a href="#users/<%= user.id %>"><%= user.escape('name') %></a> rated <a href="#shows/<%= show.id %>"><%= show.escape('name') %></a></h4>
+    <h4><a href="#users/<%= user.id %>"><%= user.escape('name') %></a> commented on <%= reviewAuthor.escape('name') %>'s review of <a href="#shows/<%= show.id %>"><%= show.escape('name') %></a></h4>
   <% } %>
 </div>
 <div class="col-xs-10">

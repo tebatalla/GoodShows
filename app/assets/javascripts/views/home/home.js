@@ -39,9 +39,13 @@ GoodShows.Views.Home = Backbone.CompositeView.extend({
         model: feedEvent
       });
     } else if (feedEvent.get('type') === "Comment") {
-      return;
+      itemView = new GoodShows.Views.CommentEventItem({
+        model: feedEvent
+      });
     } else if (feedEvent.get('type') === "Shelving") {
-      return;
+      itemView = new GoodShows.Views.ShelvingEventItem({
+        model: feedEvent
+      });
     }
 
     this.addSubview('.home-feed', itemView);
