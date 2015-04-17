@@ -13,7 +13,9 @@
   </div>
   <div class="form-group">
     <%= button_to text, users_url, class: "btn btn-success" %>
-    <button class="btn btn-primary pull-right guest">Guest</button>
+    <% unless new_user %>
+      <button class="btn btn-primary pull-right guest">Guest</button>
+    <% end %>
   </div>
 </form>
 <script>
