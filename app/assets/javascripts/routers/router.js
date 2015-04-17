@@ -32,6 +32,7 @@ GoodShows.Routers.Router = Backbone.Router.extend({
       url: 'api/users'
     });
     this.feed = new GoodShows.Collections.HomeFeed();
+    this.feed.fetch();
     var view = new GoodShows.Views.Home({
       model: this.user,
       showShelves: this.user.showShelves(),

@@ -8,7 +8,7 @@ GoodShows.Models.Comment = Backbone.Model.extend({
 
   parse: function (response) {
     if (response.author) {
-      this.author().set(response.author, { parse: true });
+      this.author().set(response.author);
       delete response.author;
     }
 

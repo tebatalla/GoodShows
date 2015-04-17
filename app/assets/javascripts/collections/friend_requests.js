@@ -9,7 +9,7 @@ GoodShows.Collections.FriendRequests = Backbone.Collection.extend({
 
   user: function () {
     if (!this._user) {
-      this._user = new GoodShows.Collections.Users([], {
+      this._user = new GoodShows.Models.Users([], {
         master: this.master
       });
     }
