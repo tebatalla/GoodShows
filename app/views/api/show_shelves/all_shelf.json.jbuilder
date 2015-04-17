@@ -10,6 +10,7 @@ json.default_shelf true
 end
 json.shows shows.flatten do |show|
   json.partial! 'api/shows/show', show: show
+  json.date_added show.show_shelvings.first.created_at
   json.show_owner (current_user.id == @user.id)
   user_rating = show.reviews.where(reviews: { author_id: @user.id })
   json.user_rating user_rating.first && user_rating.first.rating
