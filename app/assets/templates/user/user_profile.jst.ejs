@@ -39,7 +39,12 @@
   <div class="row friends-list-wrapper">
     
   </div>
+  <% if (user.get('current_user')) {%>
+  <div class="row friends-header">
+    <h4>Your friend requests</h4>
+  </div>
   <div class="row friend-requests-list-wrapper">
     
   </div>
+  <% } %>
 </div>
