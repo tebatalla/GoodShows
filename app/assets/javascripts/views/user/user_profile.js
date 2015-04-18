@@ -22,7 +22,7 @@ GoodShows.Views.UserProfile = Backbone.CompositeView.extend({
 
   initialize: function (options) {
     if(options) {
-
+      this.shelves = options.shelves;
     }
     this.listenTo(this.model, "sync", this.render);
     this.listenTo(this.model.reviews(), 'add', this.addReviewItem);
@@ -116,7 +116,8 @@ GoodShows.Views.UserProfile = Backbone.CompositeView.extend({
 
   addReviewItem: function (review) {
     var view = new GoodShows.Views.UserReviewIndexItem({
-      model: review
+      model: review,
+      shelves: this.shelves
     });
     if (review.get('rating') || review.get('review')) {
       this.addSubview('.reviews-list', view);

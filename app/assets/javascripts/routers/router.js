@@ -93,9 +93,12 @@ GoodShows.Routers.Router = Backbone.Router.extend({
         id: id
       });
     }
-    this.user.fetch({});
+    this.shelves = new GoodShows.Collections.ShowShelves();
+    this.user.fetch();
+    this.shelves.fetch();
     var view = new GoodShows.Views.UserProfile({
-      model: this.user
+      model: this.user,
+      shelves: this.shelves
     });
 
     this._swapViewWithoutRender(view);

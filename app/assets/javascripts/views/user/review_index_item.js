@@ -16,10 +16,15 @@ GoodShows.Views.UserReviewIndexItem = Backbone.View.extend({
     });
 
     this.addCommentsIndex();
+    this.addShelvesButton();
   
     return this;
   },
-  initialize: function () {
+  initialize: function (options) {
+    if (options) {
+      this.shelves = options.shelves;
+    }
+
     this.listenTo(this.model.show(), 'change', this.render);
   },
 
@@ -32,8 +37,19 @@ GoodShows.Views.UserReviewIndexItem = Backbone.View.extend({
         review: this.model
       });
 
-      this.$('.review-body').after(this.commentsView.render().$el);
     }
+    this.$('.review-body').after(this.commentsView.render().$el);
+  },
+
+  addShelvesButton: function () {
+    if(!this.shelvesButton) {
+      this.shelvesButton = new GoodShows.Views.ShowShelfButton({
+        collection: this.shelves,
+        show: this.model.show()
+      });
+
+    }
+    this.$('.add-to-shelf').html(this.shelvesButton.render().$el);
   },
 
   remove: function () {
