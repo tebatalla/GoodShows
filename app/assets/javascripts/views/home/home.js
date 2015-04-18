@@ -13,6 +13,7 @@ GoodShows.Views.Home = Backbone.CompositeView.extend({
       this.users = options.users;
       this.showShelves = options.showShelves;
       this.feed = options.feed;
+
     }
     var shows = new GoodShows.Collections.ShowsAiringToday();
     shows.fetch();
@@ -36,15 +37,18 @@ GoodShows.Views.Home = Backbone.CompositeView.extend({
 
     if(feedEvent.get('type') === "Review") {
       itemView = new GoodShows.Views.ReviewEventItem({
-        model: feedEvent
+        model: feedEvent,
+        shelves: this.showShelves
       });
     } else if (feedEvent.get('type') === "Comment") {
       itemView = new GoodShows.Views.CommentEventItem({
-        model: feedEvent
+        model: feedEvent,
+        shelves: this.showShelves
       });
     } else if (feedEvent.get('type') === "Shelving") {
       itemView = new GoodShows.Views.ShelvingEventItem({
-        model: feedEvent
+        model: feedEvent,
+        shelves: this.showShelves
       });
     }
 

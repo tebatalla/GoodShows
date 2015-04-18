@@ -9,8 +9,26 @@ GoodShows.Views.ShelvingEventItem = Backbone.View.extend({
     });
   
     this.$el.html(content);
+    this.addShelvesButton();
   
     return this;
   },
-  className: 'row',
+  className: 'row feed-item',
+
+  initialize: function (options) {
+    if (options) {
+      this.shelves = options.shelves;
+    }
+  },
+
+  addShelvesButton: function () {
+    if(!this.shelvesButton) {
+      this.shelvesButton = new GoodShows.Views.ShowShelfButton({
+        collection: this.shelves,
+        show: this.model.shelving().show()
+      });
+
+    }
+    this.$('.add-to-shelf').html(this.shelvesButton.render().$el);
+  },
 });

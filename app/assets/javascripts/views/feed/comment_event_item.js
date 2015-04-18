@@ -19,10 +19,17 @@ GoodShows.Views.CommentEventItem = Backbone.View.extend({
       ratingClass: ' readonly'
     });
     this.addCommentsIndex();
+    this.addShelvesButton();
   
     return this;
   },
-  className: 'row',
+  className: 'row feed-item',
+
+  initialize: function (options) {
+    if (options) {
+      this.shelves = options.shelves;
+    }
+  },
 
   addCommentsIndex: function () {
     if(!this.commentsView) {
@@ -31,7 +38,18 @@ GoodShows.Views.CommentEventItem = Backbone.View.extend({
         review: this.model.comment().review()
       });
 
-      this.$('.review-body').after(this.commentsView.render().$el);
     }
+    this.$('.review-body').after(this.commentsView.render().$el);
+  },
+
+  addShelvesButton: function () {
+    if(!this.shelvesButton) {
+      this.shelvesButton = new GoodShows.Views.ShowShelfButton({
+        collection: this.shelves,
+        show: this.model.comment().review().show()
+      });
+
+    }
+    this.$('.add-to-shelf').html(this.shelvesButton.render().$el);
   },
 });

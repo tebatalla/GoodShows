@@ -25,3 +25,8 @@ div.home-show-box {
     min-height: 240px;
   }
 }
+
+.add-to-shelf > .btn-group > .btn + .dropdown-toggle {
+  padding-left: 5px;
+  padding-right: 5px;
+}
