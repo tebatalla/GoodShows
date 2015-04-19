@@ -1,6 +1,6 @@
 <div class="row shelf-header">
   <h1>
-  <% if (user.get('current_user')) { %>
+  <% if (user.id === CURRENT_USER_ID) { %>
   My shows
   <% } else { %>
   <%= user.escape('name') %>'s shows

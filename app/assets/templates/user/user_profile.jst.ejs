@@ -2,7 +2,7 @@
   <div class="row user-header">
     <div class="col-lg-2 user-picture">
       <img src="<%= user.get('file_url') %>" alt="<%= user.escape('name') %>" class="img-rounded img-responsive">
-      <% if (user.get('current_user')) { %>
+      <% if (user.id === CURRENT_USER_ID) { %>
         <a href="#" class="user-picture-edit">
           <span class="glyphicon glyphicon-camera" aria-hidden="true"></span>
         </a>
@@ -39,7 +39,7 @@
   <div class="row friends-list-wrapper">
     
   </div>
-  <% if (user.get('current_user')) {%>
+  <% if (user.id === CURRENT_USER_ID) {%>
   <div class="row friends-header">
     <h4>Your friend requests</h4>
   </div>

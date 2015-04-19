@@ -51,7 +51,7 @@ GoodShows.Views.ReviewForm = Backbone.View.extend({
     var review = $(event.currentTarget).serializeJSON().review;
 
     var newRating = this.show.reviews().select( function (review) {
-      return review.user().get('current_user');
+      return review.user().id === CURRENT_USER_ID;
     });
     if (newRating.length > 0) {
       newRating = newRating[0];
