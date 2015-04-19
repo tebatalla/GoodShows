@@ -8,11 +8,14 @@ GoodShows.Views.Home = Backbone.CompositeView.extend({
   
     return this;
   },
+<<<<<<< HEAD
 
   events: {
     'click button.fetch-more-updates': 'fetchMoreUpdates'
   },
 
+=======
+>>>>>>> parent of 9e4e49c... Fetching more updates button, spinner on home page for updates feed
   initialize: function (options) {
     if (options) {
       this.users = options.users;
@@ -23,17 +26,13 @@ GoodShows.Views.Home = Backbone.CompositeView.extend({
     var shows = new GoodShows.Collections.ShowsAiringToday();
     shows.fetch();
     this.users.fetch();
-    this.feed.fetch({
-      success: function () {
-        this.$('.loader').removeClass('loader');
-      }.bind(this)
-    });
 
     this.listenTo(shows, 'sync', this.syncShows);
     this.listenTo(this.users, 'add', this.addUsers);
     this.listenTo(this.feed, 'add', this.addFeedItem);
   },
 
+<<<<<<< HEAD
   fetchMoreUpdates: function(event) {
     event.preventDefault();
     $(event.currentTarget).addClass('active');
@@ -51,6 +50,8 @@ GoodShows.Views.Home = Backbone.CompositeView.extend({
     });
   },
 
+=======
+>>>>>>> parent of 9e4e49c... Fetching more updates button, spinner on home page for updates feed
   addUsers: function(user) {
     var userView = new GoodShows.Views.UsersIndexItem({
       model: user

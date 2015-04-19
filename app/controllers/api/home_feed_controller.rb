@@ -1,7 +1,6 @@
 class Api::HomeFeedController < ApplicationController
   def index
-    page_offset = params[:page].to_i * 10
-    @data =  User.find_by_sql([<<-SQL, { user_id: current_user.id, page_offset: page_offset }])
+    @data =  User.find_by_sql([<<-SQL, { user_id: current_user.id }])
       SELECT
         reviews.author_id AS user_id,
         'Review' AS type,
@@ -41,8 +40,7 @@ class Api::HomeFeedController < ApplicationController
         friendships.user_id = :user_id
       ORDER BY
         updated_at DESC
-      LIMIT 10
-      OFFSET :page_offset;
+      LIMIT 10;
       SQL
 
     render :index
