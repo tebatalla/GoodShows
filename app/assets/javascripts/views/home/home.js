@@ -10,7 +10,7 @@ GoodShows.Views.Home = Backbone.CompositeView.extend({
   },
 
   events: {
-    'click .fetch-more-updates': 'fetchMoreUpdates'
+    'click button.fetch-more-updates': 'fetchMoreUpdates'
   },
 
   initialize: function (options) {
