@@ -40,15 +40,14 @@ GoodShows.Views.Home = Backbone.CompositeView.extend({
     this.page = this.page || 0;
     this.page++;
     this.feed.fetch({
-      data: $.param({ page: this.page}),
-      success: function (collection, response) {
-        if(response.length < 10) {
-          $(event.currentTarget).remove();
-        }
-      }
+      data: $.param({ page: this.page })
     })
-    .then(function () {
-      $(event.currentTarget).removeClass('active');
+    .then(function (response) {
+      if(response.length < 10) {
+          $(event.currentTarget).remove();
+      } else {
+        $('.fetch-more-updates').removeClass('active');
+      }
     });
   },
 
