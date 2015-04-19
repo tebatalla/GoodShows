@@ -6,7 +6,9 @@
   <%= javascript_include_tag 'application' %>
   <%= filepicker_js_include_tag %>
   <%= csrf_meta_tags %>
-  <script>CURRENT_USER_ID = <%= current_user && current_user.id %>;</script>
+  <% if current_user %>
+  <script>CURRENT_USER_ID = <%= current_user.id %>;</script>
+  <% end %>
 </head>
 <body>
 

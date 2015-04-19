@@ -12,7 +12,9 @@ window.GoodShows = window.GoodShows || {
 };
 
 $(document).ready(function(){
-  GoodShows.initialize($('#goodshows'));
+  if($('#goodshows').length) {
+    GoodShows.initialize($('#goodshows'));
+  }
 });
 
 (function($) {
