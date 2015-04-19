@@ -42,14 +42,13 @@ GoodShows.Views.Home = Backbone.CompositeView.extend({
     this.feed.fetch({
       data: $.param({ page: this.page}),
       success: function (collection, response) {
-        $(event.currentTarget).removeClass('active');
         if(response.length < 10) {
           $(event.currentTarget).remove();
         }
-      },
-      error: function() {
-        $(event.currentTarget).removeClass('active');
       }
+    })
+    .then(function () {
+      $(event.currentTarget).removeClass('active');
     });
   },
 
