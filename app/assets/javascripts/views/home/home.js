@@ -44,8 +44,9 @@ GoodShows.Views.Home = Backbone.CompositeView.extend({
     })
     .then(function (response) {
       if(response.length < 10) {
-          $(event.currentTarget).remove();
+        $(event.currentTarget).remove();
       } else {
+        debugger
         $('.fetch-more-updates').removeClass('active');
       }
     });
