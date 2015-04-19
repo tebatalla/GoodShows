@@ -36,13 +36,13 @@ GoodShows.Views.Home = Backbone.CompositeView.extend({
 
   fetchMoreUpdates: function(event) {
     event.preventDefault();
-    $(event.currentTarget).toggleClass('active');
+    $(event.currentTarget).addClass('active');
     this.page = this.page || 0;
     this.page++;
     this.feed.fetch({
       data: $.param({ page: this.page}),
       success: function (collection, response) {
-        $(event.currentTarget).toggleClass('active');
+        $(event.currentTarget).removeClass('active');
         if(response.length < 10) {
           $(event.currentTarget).remove();
         }
