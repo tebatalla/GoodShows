@@ -46,7 +46,6 @@ GoodShows.Views.Home = Backbone.CompositeView.extend({
       if(response.length < 10) {
         $(event.currentTarget).remove();
       } else {
-        debugger
         $('.fetch-more-updates').removeClass('active');
       }
     });
