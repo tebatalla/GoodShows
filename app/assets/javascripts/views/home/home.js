@@ -8,6 +8,11 @@ GoodShows.Views.Home = Backbone.CompositeView.extend({
   
     return this;
   },
+
+  events: {
+    'click .fetch-more-updates': 'fetchMoreUpdates'
+  },
+
   initialize: function (options) {
     if (options) {
       this.users = options.users;
@@ -18,10 +23,31 @@ GoodShows.Views.Home = Backbone.CompositeView.extend({
     var shows = new GoodShows.Collections.ShowsAiringToday();
     shows.fetch();
     this.users.fetch();
+    this.feed.fetch({
+      success: function () {
+        this.$('.loader').removeClass('loader');
+      }.bind(this)
+    });
 
     this.listenTo(shows, 'sync', this.syncShows);
     this.listenTo(this.users, 'add', this.addUsers);
     this.listenTo(this.feed, 'add', this.addFeedItem);
+  },
+
+  fetchMoreUpdates: function(event) {
+    event.preventDefault();
+    $(event.currentTarget).toggleClass('active');
+    this.page = this.page || 0;
+    this.page++;
+    this.feed.fetch({
+      data: $.param({ page: this.page}),
+      success: function (collection, response) {
+        $(event.currentTarget).toggleClass('active');
+        if(response.length < 10) {
+          $(event.currentTarget).remove();
+        }
+      }
+    });
   },
 
   addUsers: function(user) {
