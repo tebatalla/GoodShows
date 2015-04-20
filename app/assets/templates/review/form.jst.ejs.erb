@@ -1,6 +1,12 @@
 <div class="col-sm-3 col-sm-offset-1">
   <div class="show-poster text-center">
-    <a href="#shows/<%= show.id %>"><img src="https://image.tmdb.org/t/p/w185<%= show.get('poster_path') %>" alt=""></a>
+    <a href="#shows/<%%= show.id %>">
+      <%% if (show.get('poster_path')) { %>
+        <img src="https://image.tmdb.org/t/p/w185<%%= show.get('poster_path') %>" alt="" class="img-responsive center-block">
+      <%% } else { %>
+        <%= image_tag("not_found.png", class: "center-block img-responsive") %>
+      <%% } %>
+    </a>
   </div>
 </div>
 <div class="col-sm-7">
@@ -19,11 +25,11 @@
 
     <form class="tab-content">
       <div role="tabpanel" class="tab-pane active form-group" id="write">
-        <textarea name="review" class="form-control review-write" rows="20" style="border:none;"><%= review && review.escape('review') %></textarea>
+        <textarea name="review" class="form-control review-write" rows="20" style="border:none;"><%%= review && review.escape('review') %></textarea>
         <span class="help-block"><a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet" target="_blank">Markdown supported</a></span>
       </div>
       <div role="tabpanel" class="tab-pane review-preview" id="preview">
-        <%= review && marked(review.escape('review'))  %>
+        <%%= review && marked(review.escape('review'))  %>
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>

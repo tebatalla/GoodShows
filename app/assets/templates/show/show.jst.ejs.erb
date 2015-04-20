@@ -1,6 +1,10 @@
 <div class="col-sm-3 col-sm-offset-1">
   <div class="show-poster text-center">
-    <img class="img-responsive center-block" src="https://image.tmdb.org/t/p/w185<%%= show.get('poster_path') %>" alt="">
+    <%% if (show.get('poster_path')) { %>
+      <img src="https://image.tmdb.org/t/p/w185<%%= show.get('poster_path') %>" alt="" class="img-responsive center-block">
+    <%% } else { %>
+      <%= image_tag("not_found.png", class: "center-block img-responsive") %>
+    <%% } %>
   </div>
   <div class="add-to-shelf text-center">
     
