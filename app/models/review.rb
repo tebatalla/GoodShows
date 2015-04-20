@@ -20,7 +20,7 @@ class Review < ActiveRecord::Base
              foreign_key: :author_id,
              class_name: 'User'
 
-  has_many :comments, as: :commentable
+  has_many :comments, as: :commentable, dependent: :destroy
 
   default_scope { order('reviews.updated_at DESC') }
 end
