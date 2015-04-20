@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :users, only: [:show, :update, :index] do
       member do
         get :friends
+        get :feed
       end
     end
     get '/profile', to: 'users#show'

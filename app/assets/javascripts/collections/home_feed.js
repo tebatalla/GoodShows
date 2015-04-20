@@ -8,5 +8,11 @@ GoodShows.Collections.HomeFeed = Backbone.Collection.extend({
     } else {
       return 1;
     }
+  },
+
+  initialize: function (options) {
+    if(options) {
+      this.url = options.url;
+    }
   }
 });

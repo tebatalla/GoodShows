@@ -17,19 +17,69 @@ GoodShows.Views.UserProfile = Backbone.CompositeView.extend({
   events: {
     'click .edit-name': 'editNameForm',
     'submit .edit-name-form': 'editUser',
-    'click .user-picture-edit': 'uploadPicture'
+    'click .user-picture-edit': 'uploadPicture',
+    'click button.fetch-more-updates': 'fetchMoreUpdates'
   },
 
   initialize: function (options) {
     if(options) {
       this.shelves = options.shelves;
+      this.feed = options.feed;
     }
+
+    this.feed.fetch({
+      success: function () {
+        this.$('.loader').removeClass('loader');
+      }.bind(this)
+    });
+
     this.listenTo(this.model, "sync", this.render);
+    this.listenTo(this.feed, "add", this.addFeedItem);
     this.listenTo(this.model.reviews(), 'add', this.addReviewItem);
     this.addFriendsList();
     this.addShelvesList();
     this.addProfileOption();
     this.addFriendRequestsList();
+  },
+
+  fetchMoreUpdates: function(event) {
+    event.preventDefault();
+    $(event.currentTarget).addClass('active');
+    this.page = this.page || 0;
+    this.page++;
+    this.feed.fetch({
+      data: $.param({ page: this.page })
+    })
+    .then(function (response) {
+      if(response.length < 10) {
+        $(event.currentTarget).remove();
+      } else {
+        $('.fetch-more-updates').removeClass('active');
+      }
+    });
+  },
+
+  addFeedItem: function(feedEvent) {
+    var itemView;
+
+    if(feedEvent.get('type') === "Review") {
+      itemView = new GoodShows.Views.ReviewEventItem({
+        model: feedEvent,
+        shelves: this.shelves
+      });
+    } else if (feedEvent.get('type') === "Comment") {
+      itemView = new GoodShows.Views.CommentEventItem({
+        model: feedEvent,
+        shelves: this.shelves
+      });
+    } else if (feedEvent.get('type') === "Shelving") {
+      itemView = new GoodShows.Views.ShelvingEventItem({
+        model: feedEvent,
+        shelves: this.shelves
+      });
+    }
+
+    this.addSubview('.user-feed', itemView);
   },
 
   addProfileOption: function () {

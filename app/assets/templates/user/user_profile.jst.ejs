@@ -24,6 +24,18 @@
     <div class="col-lg-12 shelves-list">
       
     </div>
+    <div class="user-feed-header col-lg-12">
+      <h4><%= user.escape('name') %>'s updates</h4>
+    </div>
+    <div class="col-lg-12 user-feed loader">
+      
+    </div>
+    <div class="col-lg-12">    
+      <button class="col-lg-4 col-lg-offset-4 col-sm-4 col-sm-offset-4 text-center fetch-more-updates btn btn-primary has-spinner">
+        Fetch more updates
+        <span class="spinner"><i class="fa fa-spin fa-spinner"></i></span>
+      </button>
+    </div>
     <div class="reviews-header col-lg-12">
       <h4><%= user.escape('name') %>'s ratings and reviews</h4>
     </div>

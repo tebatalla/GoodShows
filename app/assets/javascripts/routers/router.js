@@ -93,11 +93,16 @@ GoodShows.Routers.Router = Backbone.Router.extend({
       });
     }
     this.shelves = new GoodShows.Collections.ShowShelves();
+    id = id || CURRENT_USER_ID;
+    this.feed = new GoodShows.Collections.HomeFeed({
+      url: '/api/users/' + id + '/feed'
+    });
     this.user.fetch();
     this.shelves.fetch();
     var view = new GoodShows.Views.UserProfile({
       model: this.user,
-      shelves: this.shelves
+      shelves: this.shelves,
+      feed: this.feed
     });
 
     this._swapViewWithoutRender(view);
