@@ -16,7 +16,7 @@ GoodShows is a clone of Goodreads, but for TV shows. It is built on Backbone and
 - [x] View TV Show Information
 - [x] Add friends
 - [x] Rate and review TV shows
-- [ ] Comment on reviews
+- [x] Comment on reviews
 - [ ] View a feed of activity from friends and of each friend specifically
 - [ ] Update progress on TV show currently being watched
 
@@ -62,12 +62,13 @@ I will add a feed to a user's profile page, indicating activity on the site (e.g
 
 [Details][phase-five]
 
-### Phase 6: Update progress on currently watching TV Show (~1 day)
+### ~~Phase 6: Update progress on currently watching TV Show (~1 day)~~ Moving to bonus feature
 I will add form to a user's page where they can indicate a show they are currently watching and update the percentage watched.
 
 [Details][phase-six]
 
 ### Bonus Features (TBD)
+- [ ] Update progress on currently watching TV Show
 - [ ] Expanded TV show page, with extensive information on seasons, episodes and actors
 - [ ] Progress update is checklist, user checks off which episodes they've seen to figure out percentage
 - [ ] Search TV shows by genre, actor, etc.
