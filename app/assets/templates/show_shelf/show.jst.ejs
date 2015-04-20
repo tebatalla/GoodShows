@@ -1,7 +1,7 @@
 <div class="row shelf-show-header">
 <div class="col-xs-12">
   <h4><%= shelf.escape("title") %>
-    <% if (!shelf.get('default_shelf')) { %>
+    <% if (!shelf.get('default_shelf') && shelf.get('owner_id') === CURRENT_USER_ID) { %>
     <small class="pull-right">
       <button class="delete-shelf btn btn-danger btn-xs">Remove Shelf</button>
     </small>
