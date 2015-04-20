@@ -30,7 +30,8 @@ GoodShows is a clone of Goodreads, but for TV shows. It is built on Backbone and
 
 ### Phase 1: User Authentication, TV Show Shelves (~1 day)
 I will implement user authentication in Rails based on the practices learned at
-App Academy. By the end of this phase, users will be able to create shelves where they can add TV shows (e.g., want to watch, watched, favorites, etc.). The most important part of this phase will
+App Academy. By the end of this phase, users will be able to create shelves where they can add TV shows
+(e.g., want to watch, watched, favorites, etc.). The most important part of this phase will
 be pushing the app to Heroku and ensuring that everything works before moving on
 to phase 2.
 
@@ -39,14 +40,16 @@ to phase 2.
 ### Phase 2: Viewing TV Shows and Adding them to shelves (~2 days)
 I will add API routes to serve TV show data as JSON, then add Backbone
 models and collections that fetch data from those routes. TV Show information
-will be available via [themoviedb](http://docs.themoviedb.apiary.io/#). I will use `Paperclip` to store TV Show images. By the end of this
+will be available via [themoviedb](http://docs.themoviedb.apiary.io/#). By the end of this
 phase, users will be able to create shelves, search for TV shows and add them to their shelves, all
 inside a single Backbone app.
 
 [Details][phase-two]
 
 ### Phase 3: Add friends, Improve User Profile (~2 days)
-I plan to add functionality so that users can add friends. In addition, the user profile page will be expanded so that you can view a user's friends, TV Show shelves and TV show reviews. I also plan to integrate Filepicker for file upload so users can add profile pictures to their profile pages.
+I plan to add functionality so that users can add friends. In addition, the user profile page will be
+expanded so that you can view a user's friends, TV Show shelves and TV show reviews. I also plan to integrate
+`Filepicker` for file upload so users can add profile pictures to their profile pages.
 
 [Details][phase-three]
 
@@ -57,12 +60,15 @@ Reviews will be able to be commented on by friends.
 [Details][phase-four]
 
 ### Phase 5: User activity feed, home feed (~2 days)
-I will add a feed to a user's profile page, indicating activity on the site (e.g. adding a show to a shelf, becoming friends with someone, rating a show). I will also add a feed from that user's friends as the home page item with infinite scrolling. I will use the Wisper gem to architect a Pub Sub design pattern for changes in the database.
+I will add a feed to a user's profile page, indicating activity on the site (e.g. adding a show to a shelf,
+becoming friends with someone, rating a show). I will also add a feed from that user's friends as the home
+page item with infinite scrolling.
 
 [Details][phase-five]
 
 ### ~~Phase 6: Update progress on currently watching TV Show (~1 day)~~ Moving to bonus feature
-I will add form to a user's page where they can indicate a show they are currently watching and update the percentage watched.
+I will add form to a user's page where they can indicate a show they are currently watching and update the
+percentage watched.
 
 [Details][phase-six]
 
