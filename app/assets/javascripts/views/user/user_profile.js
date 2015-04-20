@@ -27,11 +27,9 @@ GoodShows.Views.UserProfile = Backbone.CompositeView.extend({
       this.feed = options.feed;
     }
 
-    this.feed.fetch({
-      success: function () {
-        this.$('.loader').removeClass('loader');
-      }.bind(this)
-    });
+    this.feed.fetch().then( function () {
+      this.$('.loader').removeClass('loader');
+    }.bind(this));
 
     this.listenTo(this.model, "sync", this.render);
     this.listenTo(this.feed, "add", this.addFeedItem);
