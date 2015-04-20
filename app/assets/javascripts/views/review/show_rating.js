@@ -27,7 +27,7 @@ GoodShows.Views.ShowRating = Backbone.View.extend({
 
   changeRating: function (event, value) {
     var newRating = this.reviews.select( function (review) {
-      return review.user().get('current_user');
+      return review.user().id === CURRENT_USER_ID;
     });
     if (newRating.length > 0) {
       newRating = newRating[0];
