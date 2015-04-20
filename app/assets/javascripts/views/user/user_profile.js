@@ -28,7 +28,7 @@ GoodShows.Views.UserProfile = Backbone.CompositeView.extend({
     }
 
     this.feed.fetch().then( function () {
-      this.$('.user-feed').removeClass('loader');
+      this.$('.user-feed-loader').remove();
     }.bind(this));
 
     this.listenTo(this.model, "sync", this.render);
@@ -60,7 +60,7 @@ GoodShows.Views.UserProfile = Backbone.CompositeView.extend({
   addFeedItem: function(feedEvent) {
     var itemView;
 
-    this.$('.user-feed').removeClass('loader');
+    this.$('.user-feed-loader').remove();
 
     if(feedEvent.get('type') === "Review") {
       itemView = new GoodShows.Views.ReviewEventItem({
