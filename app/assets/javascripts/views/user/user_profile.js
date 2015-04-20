@@ -60,6 +60,8 @@ GoodShows.Views.UserProfile = Backbone.CompositeView.extend({
   addFeedItem: function(feedEvent) {
     var itemView;
 
+    this.$('.loader').removeClass('loader');
+
     if(feedEvent.get('type') === "Review") {
       itemView = new GoodShows.Views.ReviewEventItem({
         model: feedEvent,
