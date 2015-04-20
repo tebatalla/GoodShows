@@ -17,7 +17,7 @@ GoodShows is a clone of Goodreads, but for TV shows. It is built on Backbone and
 - [x] Add friends
 - [x] Rate and review TV shows
 - [x] Comment on reviews
-- [ ] View a feed of activity from friends and of each friend specifically
+- [x] View a feed of activity from friends and of each friend specifically
 
 ## Design Docs
 * [View Wireframes][views]
