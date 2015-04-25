@@ -33,3 +33,12 @@ div.rating-disabled {
   padding-bottom: 10px;
   border-top: 1px solid #ecf0f1;
 }
+
+.review-write {
+  margin-top: 5px;
+  box-shadow: none;
+}
+
+.review-tab-content, .review-preview > * {
+  margin-top: 10px;
+}
